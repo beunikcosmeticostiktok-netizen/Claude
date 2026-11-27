@@ -8,7 +8,7 @@ export async function signIn(formData: FormData) {
     email: String(formData.get('email') ?? '').trim(),
     password: String(formData.get('password') ?? ''),
   });
-  if (error) redirect('/login?erro=credenciais');
+  if (error) redirect('/login?erro=' + encodeURIComponent(error.code ?? error.name ?? 'desconhecido'));
   redirect('/painel');
 }
 
