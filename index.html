@@ -5,144 +5,149 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Century Shalom Plásticos</title>
 <meta name="description" content="Century Shalom: indústria de plásticos em injeção, sopro, embalagens e componentes sob medida. Solicite seu orçamento.">
-<meta name="theme-color" content="#06101c">
+<meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#06101c;--bg2:#0b1829;--card:#102238;--line:rgba(255,255,255,.1);--txt:#eef4fb;--mut:#9fb2c8;
---acc:#19c3ff;--acc2:#ffd23f;--ok:#3ddc97;--r:18px;--head:'Barlow Condensed','Arial Narrow',sans-serif;--sans:'Inter',system-ui,sans-serif}
+:root{
+  --bg:#ffffff; --soft:#f4f6fa; --line:#e4e9f1; --txt:#0a2352; --mut:#5d6b85;
+  --navy:#0a2352; --acc:#fb5100; --acc-d:#d94500; --ok:#1f9d63;
+  --r:16px; --head:'Outfit',system-ui,sans-serif; --sans:'Inter',system-ui,sans-serif;
+  --sh:0 1px 2px rgba(10,35,82,.05),0 12px 32px -12px rgba(10,35,82,.14);
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:clip}
-body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
-svg{display:block}a{color:inherit;text-decoration:none}
-.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
-section{padding:96px 0;position:relative}
-h1,h2,h3{font-family:var(--head);line-height:1;text-transform:uppercase;letter-spacing:.01em}
-h1{font-size:clamp(2.8rem,7vw,5.2rem);font-weight:800}
-h2{font-size:clamp(2.1rem,4.6vw,3.4rem);font-weight:800;margin-bottom:16px}
-h3{font-size:1.6rem;font-weight:700}
-.grad{background:linear-gradient(100deg,var(--acc),#7be3ff 55%,var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.eyebrow{font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.eyebrow::before{content:"";width:30px;height:3px;background:var(--acc2)}
-.lead{color:var(--mut);font-size:1.12rem;max-width:620px}
-.center{text-align:center}.center .lead{margin-inline:auto}.center .eyebrow{justify-content:center}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 32px;border-radius:12px;font-weight:700;font-size:1rem;border:0;cursor:pointer;color:#04121f;
-background:linear-gradient(100deg,var(--acc),#6fe0ff);box-shadow:0 12px 36px -10px rgba(25,195,255,.7);transition:.2s;font-family:var(--sans)}
-.btn:hover{transform:translateY(-3px);box-shadow:0 18px 44px -10px rgba(25,195,255,.9)}
-.btn.wa{background:linear-gradient(100deg,#25d366,#56e98f);box-shadow:0 12px 36px -10px rgba(37,211,102,.6)}
-.btn.line{background:transparent;color:var(--txt);border:1px solid var(--line);box-shadow:none}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+svg,img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+section{padding:104px 0}
+h1,h2,h3{font-family:var(--head);color:var(--navy);letter-spacing:-.02em;line-height:1.08}
+h1{font-size:clamp(2.5rem,5.8vw,4.3rem);font-weight:600}
+h2{font-size:clamp(2rem,4vw,3rem);font-weight:600;margin-bottom:16px}
+h3{font-size:1.25rem;font-weight:600}
+h1 em,h2 em{font-style:normal;color:var(--acc)}
+.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
+.lead{color:var(--mut);font-size:1.1rem;max-width:600px}
+.center{text-align:center}.center .lead{margin-inline:auto}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border-radius:999px;font:600 .98rem var(--sans);border:1.5px solid transparent;cursor:pointer;color:#fff;background:var(--acc);transition:.2s}
+.btn:hover{background:var(--acc-d);transform:translateY(-2px);box-shadow:0 12px 26px -10px rgba(251,81,0,.55)}
+.btn.wa{background:var(--navy)}.btn.wa:hover{background:#06183b;box-shadow:0 12px 26px -10px rgba(10,35,82,.5)}
+.btn.line{background:transparent;color:var(--navy);border-color:var(--line)}.btn.line:hover{background:var(--soft);box-shadow:none}
 .btn.full{width:100%}
 
-nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(6,16,28,.78);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;justify-content:space-between;align-items:center;height:72px}
-.logo{display:flex;align-items:center;gap:12px;font-family:var(--head);font-weight:800;font-size:1.5rem;text-transform:uppercase;letter-spacing:.04em}
-.logo svg{width:34px;height:34px}
-.logo small{display:block;font-family:var(--sans);font-weight:500;font-size:.62rem;letter-spacing:.2em;color:var(--mut);margin-top:-2px}
-nav ul{display:flex;gap:28px;list-style:none;font-size:.92rem;color:var(--mut)}nav ul a:hover{color:var(--txt)}
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:76px}
+.logo img{height:46px;width:auto}
+nav ul{display:flex;gap:30px;list-style:none;font-size:.92rem;color:var(--mut);font-weight:500}nav ul a:hover{color:var(--navy)}
 nav .btn{padding:11px 22px;font-size:.9rem}
-@media(max-width:860px){nav ul{display:none}}
+@media(max-width:860px){nav ul{display:none}.logo img{height:38px}}
 
 /* hero */
-.hero{padding:70px 0 90px;overflow:hidden;position:relative;background:
-radial-gradient(900px 500px at 85% -10%,rgba(25,195,255,.22),transparent 60%),radial-gradient(700px 400px at -10% 100%,rgba(255,210,63,.1),transparent 60%)}
-.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(70% 70% at 50% 40%,#000,transparent);opacity:.35;pointer-events:none}
-.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
-.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
-.chip{padding:7px 16px;border:1px solid var(--line);border-radius:999px;font-size:.8rem;font-weight:600;background:rgba(255,255,255,.04);color:var(--acc)}
+.hero{padding:72px 0 96px;background:radial-gradient(700px 420px at 90% 0%,rgba(251,81,0,.07),transparent 65%),linear-gradient(#fff,var(--soft))}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+.tag{display:inline-block;font-size:.8rem;font-weight:600;color:var(--navy);padding:7px 16px;border:1px solid var(--line);border-radius:999px;background:#fff;margin-bottom:26px}
+.tag b{color:var(--acc)}
 .hero .lead{margin:24px 0 30px}
-.ticks{list-style:none;display:grid;gap:10px;margin-bottom:32px}
-.ticks li{padding-left:32px;position:relative;font-weight:500}
-.ticks li::before{content:"✓";position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;background:rgba(61,220,151,.16);color:var(--ok);display:grid;place-items:center;font-size:.75rem;font-weight:800}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.ticks{list-style:none;display:grid;gap:12px;margin-bottom:34px}
+.ticks li{padding-left:30px;position:relative;font-weight:500;color:var(--navy)}
+.ticks li::before{content:"";position:absolute;left:0;top:7px;width:16px;height:9px;border-left:2px solid var(--acc);border-bottom:2px solid var(--acc);transform:rotate(-45deg)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
 
-/* form */
-.quote{background:linear-gradient(165deg,#13294a,#0d1d33);border:1px solid rgba(25,195,255,.35);border-radius:24px;padding:32px;box-shadow:0 40px 90px -30px #000,0 0 80px -30px rgba(25,195,255,.5)}
-.quote h3{font-size:1.9rem;margin-bottom:4px}.quote>p{color:var(--mut);font-size:.9rem;margin-bottom:20px}
-.f{display:grid;gap:12px}.f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.quote{background:#fff;border:1px solid var(--line);border-radius:24px;padding:34px;box-shadow:var(--sh)}
+.quote h3{font-size:1.6rem;margin-bottom:4px}.quote>p{color:var(--mut);font-size:.9rem;margin-bottom:22px}
+.f{display:grid;gap:14px}.f2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:520px){.f2{grid-template-columns:1fr}}
-label{font-size:.76rem;font-weight:600;color:var(--mut);display:grid;gap:5px}
-input,select,textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:10px;padding:13px 14px;color:var(--txt);font:inherit;font-size:.95rem}
-select option{color:#000}
-input:focus,select:focus,textarea:focus{outline:2px solid var(--acc);border-color:transparent}
-textarea{resize:vertical;min-height:70px}
-.note{font-size:.76rem;color:var(--mut);text-align:center;margin-top:4px}
-@media(max-width:940px){.hero .wrap{grid-template-columns:1fr}}
+label{font-size:.76rem;font-weight:600;color:var(--navy);display:grid;gap:6px}
+input,select,textarea{width:100%;background:var(--soft);border:1px solid transparent;border-radius:10px;padding:13px 14px;color:var(--navy);font:inherit;font-size:.94rem;transition:.2s}
+input::placeholder,textarea::placeholder{color:#97a3b8}
+input:focus,select:focus,textarea:focus{outline:none;background:#fff;border-color:var(--acc);box-shadow:0 0 0 4px rgba(251,81,0,.1)}
+textarea{resize:vertical;min-height:72px}
+.note{font-size:.76rem;color:var(--mut);text-align:center}
+@media(max-width:940px){.hero .wrap{grid-template-columns:1fr;gap:44px}}
 
-/* strip */
-.strip{background:var(--bg2);border-block:1px solid var(--line);padding:34px 0}
-.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
-.strip b{display:block;font-family:var(--head);font-size:2.6rem;font-weight:800;color:var(--acc2);line-height:1}
-.strip span{font-size:.85rem;color:var(--mut)}
-@media(max-width:700px){.strip .wrap{grid-template-columns:1fr 1fr}}
+/* numbers */
+.strip{background:var(--navy);padding:44px 0}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.strip b{display:block;font-family:var(--head);font-size:2.6rem;font-weight:500;color:#fff;line-height:1.1}
+.strip span{font-size:.85rem;color:#a9b8d4}
+@media(max-width:700px){.strip .wrap{grid-template-columns:1fr 1fr;row-gap:30px}}
 
-/* cards */
-.grid{display:grid;gap:22px;margin-top:52px}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}
+/* grids & cards */
+.grid{display:grid;gap:22px;margin-top:56px}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}
 @media(max-width:1000px){.g4,.g5{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr}}
-@media(max-width:560px){.g4{grid-template-columns:1fr}.g5{grid-template-columns:1fr 1fr;gap:14px}.g5>:last-child{grid-column:1/-1}.seg h3{font-size:1rem}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;transition:.3s;position:relative;overflow:hidden}
-.card:hover{transform:translateY(-6px);border-color:rgba(25,195,255,.55)}
-.card p{color:var(--mut);margin-top:10px;font-size:.96rem}
-.prod .art{height:150px;border-radius:14px;margin-bottom:22px;background:radial-gradient(circle at 50% 120%,rgba(25,195,255,.3),transparent 65%),#0a1a2e;display:grid;place-items:center}
-.prod svg{width:120px;height:120px;transition:.4s}.prod:hover svg{transform:scale(1.1) rotate(-4deg)}
-.prod ul{list-style:none;margin-top:16px;display:grid;gap:7px;font-size:.9rem}
-.prod li::before{content:"▸ ";color:var(--acc2)}
-.alt{background:var(--bg2);border-block:1px solid var(--line)}
-.ic{width:48px;height:48px;border-radius:12px;background:rgba(25,195,255,.13);display:grid;place-items:center;font-size:1.4rem;margin-bottom:16px}
-.ic svg{width:28px;height:28px;fill:none;stroke:var(--acc);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.ic svg .a{stroke:var(--acc2)}
-.seg{text-align:center;padding:28px 14px}.seg .ic{margin:0 auto 16px;width:72px;height:72px;border-radius:20px;background:radial-gradient(circle at 50% 120%,rgba(25,195,255,.28),rgba(25,195,255,.08));border:1px solid rgba(25,195,255,.25)}.seg .ic svg{width:40px;height:40px}.seg:hover .ic svg{transform:scale(1.12) rotate(-5deg)}.ic svg{transition:.3s}.seg h3{font-size:1.15rem}
+@media(max-width:560px){.g4{grid-template-columns:1fr}.g5{grid-template-columns:1fr 1fr;gap:12px}.g5>:last-child{grid-column:1/-1}}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:32px;transition:.25s}
+.card:hover{border-color:rgba(251,81,0,.45);box-shadow:var(--sh);transform:translateY(-3px)}
+.card p{color:var(--mut);margin-top:10px;font-size:.95rem}
+.soft{background:var(--soft)}
+
+/* line icons */
+.ico{fill:none;stroke:var(--navy);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.ico .a{stroke:var(--acc)}
+.card .ico-wrap{width:48px;height:48px;margin-bottom:20px}
+.card .ico-wrap svg{width:100%;height:100%}
+.prod .art{height:170px;border-radius:12px;background:var(--soft);display:grid;place-items:center;margin-bottom:26px}
+.prod .art svg{width:104px;height:104px;stroke-width:2;transition:.4s}.prod:hover .art svg{transform:scale(1.06)}
+.prod ul{list-style:none;margin-top:18px;display:grid;gap:8px;font-size:.9rem;color:var(--navy);padding-top:18px;border-top:1px solid var(--line)}
+.prod li{padding-left:16px;position:relative}.prod li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:2px;background:var(--acc)}
+.seg{text-align:center;padding:30px 14px}.seg .ico-wrap{margin:0 auto 18px;width:44px;height:44px}.seg h3{font-size:1rem;font-weight:500}
 
 /* process */
-.proc{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:56px;counter-reset:p;position:relative}
-.proc::before{content:"";position:absolute;top:30px;left:6%;right:6%;height:2px;background:repeating-linear-gradient(90deg,var(--acc) 0 10px,transparent 10px 20px);opacity:.5}
+.proc{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;margin-top:60px;counter-reset:p;position:relative}
+.proc::before{content:"";position:absolute;top:22px;left:8%;right:8%;height:1px;background:var(--line)}
 .pst{text-align:center;position:relative}
-.pst::before{counter-increment:p;content:counter(p);width:60px;height:60px;border-radius:50%;margin:0 auto 16px;display:grid;place-items:center;font-family:var(--head);font-size:1.8rem;font-weight:800;color:#04121f;background:linear-gradient(135deg,var(--acc),var(--acc2));box-shadow:0 0 0 8px var(--bg)}
-.pst h3{font-size:1.25rem}.pst p{color:var(--mut);font-size:.88rem;margin-top:6px}
-@media(max-width:900px){.proc{grid-template-columns:1fr;gap:28px}.proc::before{display:none}.pst{display:grid;grid-template-columns:60px 1fr;gap:18px;text-align:left}.pst::before{margin:0}}
+.pst::before{counter-increment:p;content:counter(p);width:44px;height:44px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;font:500 1.1rem var(--head);color:var(--acc);background:#fff;border:1.5px solid var(--acc);box-shadow:0 0 0 8px #fff;position:relative}
+.pst h3{font-size:1.1rem}.pst p{color:var(--mut);font-size:.88rem;margin-top:6px}
+@media(max-width:900px){.proc{grid-template-columns:1fr;gap:26px}.proc::before{display:none}.pst{display:grid;grid-template-columns:44px 1fr;gap:18px;text-align:left}.pst::before{margin:0;box-shadow:none}}
 
 /* faq */
-.faq{max-width:780px;margin:52px auto 0}
-details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-bottom:12px}
-details[open]{border-color:rgba(25,195,255,.5)}
-summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
-summary::-webkit-details-marker{display:none}summary::after{content:"+";color:var(--acc);font-size:1.5rem;line-height:1}
+.faq{max-width:760px;margin:56px auto 0}
+details{border-bottom:1px solid var(--line);padding:22px 4px}
+summary{cursor:pointer;font-weight:600;color:var(--navy);list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}summary::after{content:"+";color:var(--acc);font-size:1.5rem;line-height:1;font-weight:400}
 details[open] summary::after{content:"–"}
 details p{color:var(--mut);margin-top:12px}
 
-.final{text-align:center;background:radial-gradient(60% 90% at 50% 0%,rgba(25,195,255,.2),transparent 70%)}
-.final .cta-row{justify-content:center;margin-top:30px}
-footer{border-top:1px solid var(--line);padding:40px 0 100px;color:var(--mut);font-size:.85rem}
-footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.wafab{position:fixed;right:20px;bottom:20px;z-index:60;width:62px;height:62px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(37,211,102,.55);animation:pl 2.4s infinite}
-.wafab svg{width:32px;height:32px}
-@keyframes pl{70%{box-shadow:0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
-.rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.final{background:var(--navy);text-align:center}
+.final h2{color:#fff}.final .lead{color:#b5c3de}
+.final .cta-row{justify-content:center;margin-top:34px}
+.final .btn.wa{background:#fff;color:var(--navy)}.final .btn.wa:hover{background:var(--soft)}
+footer{padding:56px 0 100px;color:var(--mut);font-size:.88rem;border-top:1px solid var(--line)}
+footer .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px;align-items:start}
+footer img{height:44px;width:auto;margin-bottom:12px}
+footer b{color:var(--navy);font-weight:600}
+.copy{grid-column:1/-1;border-top:1px solid var(--line);padding-top:24px;font-size:.8rem}
+@media(max-width:760px){footer .wrap{grid-template-columns:1fr}}
+
+.wafab{position:fixed;right:20px;bottom:20px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 26px rgba(37,211,102,.45);transition:.2s}
+.wafab:hover{transform:scale(1.08)}.wafab svg{width:30px;height:30px}
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
 <nav><div class="wrap">
-  <a href="#" class="logo">
-    <svg viewBox="0 0 40 40"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#19c3ff"/><stop offset="1" stop-color="#ffd23f"/></linearGradient></defs><rect x="2" y="2" width="36" height="36" rx="10" fill="url(#lg)"/><path d="M26 13a9 9 0 1 0 0 14" fill="none" stroke="#04121f" stroke-width="4.5" stroke-linecap="round"/></svg>
-    <div>Century Shalom<small>INDÚSTRIA DE PLÁSTICOS</small></div>
-  </a>
+  <a href="#" class="logo"><img src="logo.png" alt="Century Shalom — Indústria de Plásticos"></a>
   <ul><li><a href="#solucoes">Soluções</a></li><li><a href="#segmentos">Segmentos</a></li><li><a href="#processo">Como trabalhamos</a></li><li><a href="#diferenciais">Diferenciais</a></li><li><a href="#faq">Dúvidas</a></li></ul>
   <a href="#orcamento" class="btn">Solicitar orçamento</a>
 </div></nav>
 
 <header class="hero" id="orcamento"><div class="wrap">
   <div class="rv">
-    <div class="chips"><span class="chip">Injeção</span><span class="chip">Sopro</span><span class="chip">Embalagens</span><span class="chip">Componentes</span></div>
-    <h1>Plástico <span class="grad">sob medida</span> para a sua linha de produção</h1>
-    <p class="lead">A Century Shalom fabrica embalagens e componentes plásticos por injeção e sopro, com padrão de qualidade, prazo cumprido e atendimento técnico de quem entende de indústria.</p>
+    <div class="tag"><b>35 anos</b> de experiência em plásticos</div>
+    <h1>Plástico <em>sob medida</em> para a sua linha de produção</h1>
+    <p class="lead">Fabricamos embalagens e componentes plásticos por injeção e sopro, com padrão de qualidade, prazo cumprido e atendimento técnico de quem entende de indústria.</p>
     <ul class="ticks">
       <li>Projeto e desenvolvimento do seu produto ou embalagem</li>
       <li>Do lote de teste à produção em escala recorrente</li>
-      <li>Resposta comercial rápida, direto com quem decide</li>
+      <li>Retorno do orçamento em até 24 horas</li>
     </ul>
     <div class="cta-row">
-      <a href="#" class="btn wa" data-wa="Olá! Vim pelo site e gostaria de falar com o comercial da Century Shalom.">Falar no WhatsApp</a>
+      <a href="#" class="btn" data-wa="Olá! Vim pelo site e gostaria de falar com o comercial da Century Shalom.">Falar no WhatsApp</a>
       <a href="#solucoes" class="btn line">Conhecer soluções</a>
     </div>
   </div>
@@ -169,15 +174,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <label>Volume mensal estimado
           <select name="vol"><option value="">Selecione…</option><option>Até 5 mil un.</option><option>5 a 20 mil un.</option><option>20 a 100 mil un.</option><option>Acima de 100 mil un.</option><option>Ainda não sei</option></select></label>
       </div>
-      <label>Detalhes (medidas, material, cor, aplicação)<textarea name="msg" placeholder="Conte rapidamente o que precisa. Pode anexar fotos depois, pelo WhatsApp."></textarea></label>
-      <button class="btn full" type="submit">Enviar pedido de orçamento →</button>
-      <div class="note">🔒 Seus dados são usados apenas para retorno comercial.</div>
+      <label>Detalhes (medidas, material, cor, aplicação)<textarea name="msg" placeholder="Conte rapidamente o que precisa. Pode enviar fotos depois, pelo WhatsApp."></textarea></label>
+      <button class="btn full" type="submit">Enviar pedido de orçamento</button>
+      <div class="note">Seus dados são usados apenas para retorno comercial.</div>
     </div>
   </form>
 </div></header>
 
 <div class="strip"><div class="wrap">
-  
   <div><b>35</b><span>anos de mercado</span></div>
   <div><b>+1000</b><span>clientes atendidos</span></div>
   <div><b>+15 mil</b><span>peças por mês</span></div>
@@ -186,21 +190,21 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <section id="solucoes">
   <div class="wrap">
-    <div class="center rv"><div class="eyebrow">Soluções</div><h2>Três frentes. <span class="grad">Uma só fornecedora.</span></h2>
+    <div class="center rv"><div class="eyebrow">Soluções</div><h2>Três frentes. <em>Uma só fornecedora.</em></h2>
     <p class="lead">Concentre suas compras de plástico em um parceiro que domina os principais processos de transformação.</p></div>
     <div class="grid g3">
       <article class="card prod rv">
-        <div class="art"><svg viewBox="0 0 120 120" fill="none"><rect x="14" y="40" width="92" height="52" rx="10" fill="#19c3ff" opacity=".9"/><rect x="30" y="26" width="24" height="20" rx="4" fill="#ffd23f"/><rect x="66" y="26" width="24" height="20" rx="4" fill="#ffd23f"/><circle cx="60" cy="66" r="14" fill="#06101c"/><circle cx="60" cy="66" r="6" fill="#19c3ff"/></svg></div>
+        <div class="art"><svg class="ico" viewBox="0 0 120 120"><ellipse cx="60" cy="40" rx="34" ry="12"/><path d="M26 40v30c0 7 15 13 34 13s34-6 34-13V40"/><path class="a" d="M40 55v22M52 59v25M68 59v25M80 55v22"/></svg></div>
         <h3>Injeção plástica</h3><p>Peças e componentes com precisão dimensional e repetibilidade, em pequenos e grandes lotes.</p>
         <ul><li>Peças técnicas e utilitárias</li><li>Tampas, conexões e acessórios</li><li>Moldes sob projeto</li></ul>
       </article>
       <article class="card prod rv">
-        <div class="art"><svg viewBox="0 0 120 120" fill="none"><rect x="46" y="8" width="28" height="16" rx="4" fill="#ffd23f"/><path d="M48 24h24v14c0 8 18 14 18 34v32a10 10 0 0 1-10 10H40a10 10 0 0 1-10-10V72c0-20 18-26 18-34z" fill="#19c3ff" opacity=".9"/><rect x="42" y="62" width="36" height="26" rx="5" fill="#06101c" opacity=".55"/></svg></div>
+        <div class="art"><svg class="ico" viewBox="0 0 120 120"><path d="M50 12h20v14c0 6 18 10 18 28v46a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8V54c0-18 18-22 18-28z"/><path class="a" d="M38 68h44M38 88h44"/></svg></div>
         <h3>Sopro</h3><p>Frascos, bombonas e galões em diversos formatos e capacidades, com acabamento uniforme.</p>
         <ul><li>Frascos e galões</li><li>Linhas de higiene e limpeza</li><li>Formatos personalizados</li></ul>
       </article>
       <article class="card prod rv">
-        <div class="art"><svg viewBox="0 0 120 120" fill="none"><path d="M60 12l44 22v52L60 108 16 86V34z" fill="#19c3ff" opacity=".9"/><path d="M60 12l44 22-44 22-44-22z" fill="#7be3ff"/><path d="M60 56v52" stroke="#06101c" stroke-width="3"/><rect x="72" y="62" width="22" height="14" rx="3" fill="#ffd23f" transform="skewY(-26)"/></svg></div>
+        <div class="art"><svg class="ico" viewBox="0 0 120 120"><path d="M60 14l42 21v46L60 102 18 81V35z"/><path d="M18 35l42 21 42-21M60 56v46"/><path class="a" d="M39 24.500l42 21"/></svg></div>
         <h3>Embalagens e componentes</h3><p>Soluções completas para acondicionar, proteger e apresentar o seu produto.</p>
         <ul><li>Embalagens padrão e sob medida</li><li>Kits de componentes</li><li>Desenvolvimento conjunto</li></ul>
       </article>
@@ -208,23 +212,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   </div>
 </section>
 
-<section id="segmentos" class="alt">
+<section id="segmentos" class="soft">
   <div class="wrap">
-    <div class="center rv"><div class="eyebrow">Segmentos atendidos</div><h2>Plástico que <span class="grad">move a sua indústria</span></h2>
-    <p class="lead">Ajuste a lista aos segmentos que a Century Shalom realmente atende.</p></div>
+    <div class="center rv"><div class="eyebrow">Segmentos atendidos</div><h2>Plástico que move <em>a sua indústria</em></h2></div>
     <div class="grid g5">
-      <div class="card seg rv"><div class="ic"><svg viewBox="0 0 32 32"><path d="M10 15h12v12a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2z"/><path d="M14 15v-3h4v3"/><path class="a" d="M16 12V6h6"/><path d="M13 20h6M13 24h6"/></svg></div><h3>Higiene e cosméticos</h3></div>
-      <div class="card seg rv"><div class="ic"><svg viewBox="0 0 32 32"><path d="M8 16h10v11a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2z"/><path d="M10 16v-4h6v4"/><path class="a" d="M10 12V8h8l3 2v2h-3"/><path class="a" d="M24 7h2.500M24.500 11H28M23.500 15H26"/></svg></div><h3>Limpeza</h3></div>
-      <div class="card seg rv"><div class="ic"><svg viewBox="0 0 32 32"><rect x="8" y="6" width="16" height="5" rx="1.500"/><path d="M9.500 11v14a3 3 0 0 0 3 3h7a3 3 0 0 0 3-3V11"/><path class="a" d="M16 24c-3-1-3.500-5-1-7 1 2.500 3.500 2.500 4 5"/></svg></div><h3>Alimentos e bebidas</h3></div>
-      <div class="card seg rv"><div class="ic"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="8" rx="8" ry="3"/><path d="M8 8v16c0 1.700 3.600 3 8 3s8-1.300 8-3V8"/><path class="a" d="M8 14c0 1.700 3.600 3 8 3s8-1.300 8-3M8 20c0 1.700 3.600 3 8 3s8-1.300 8-3"/></svg></div><h3>Químico e lubrificantes</h3></div>
-      <div class="card seg rv"><div class="ic"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="8"/><circle cx="16" cy="16" r="3"/><path class="a" d="M16 4v4M16 24v4M4 16h4M24 16h4M7.500 7.500l2.800 2.800M21.700 21.700l2.800 2.800M24.500 7.500l-2.800 2.800M10.300 21.700l-2.800 2.800"/></svg></div><h3>Industrial e utilidades</h3></div>
+      <div class="card seg rv"><div class="ico-wrap"><svg class="ico" viewBox="0 0 32 32"><path d="M10 15h12v12a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2z"/><path d="M14 15v-3h4v3"/><path class="a" d="M16 12V6h6"/></svg></div><h3>Higiene e cosméticos</h3></div>
+      <div class="card seg rv"><div class="ico-wrap"><svg class="ico" viewBox="0 0 32 32"><path d="M8 16h10v11a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2z"/><path d="M10 16v-4h6v4"/><path d="M10 12V8h8l3 2v2h-3"/><path class="a" d="M24 8h3M24.500 12H28"/></svg></div><h3>Limpeza</h3></div>
+      <div class="card seg rv"><div class="ico-wrap"><svg class="ico" viewBox="0 0 32 32"><rect x="8" y="6" width="16" height="5" rx="1.500"/><path d="M9.500 11v14a3 3 0 0 0 3 3h7a3 3 0 0 0 3-3V11"/><path class="a" d="M13 19h6"/></svg></div><h3>Alimentos e bebidas</h3></div>
+      <div class="card seg rv"><div class="ico-wrap"><svg class="ico" viewBox="0 0 32 32"><ellipse cx="16" cy="8" rx="8" ry="3"/><path d="M8 8v16c0 1.700 3.600 3 8 3s8-1.300 8-3V8"/><path class="a" d="M8 16c0 1.700 3.600 3 8 3s8-1.300 8-3"/></svg></div><h3>Químico e lubrificantes</h3></div>
+      <div class="card seg rv"><div class="ico-wrap"><svg class="ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="8"/><circle class="a" cx="16" cy="16" r="3"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4"/></svg></div><h3>Industrial e utilidades</h3></div>
     </div>
   </div>
 </section>
 
 <section id="processo">
   <div class="wrap">
-    <div class="center rv"><div class="eyebrow">Como trabalhamos</div><h2>Do briefing à <span class="grad">entrega no prazo</span></h2></div>
+    <div class="center rv"><div class="eyebrow">Como trabalhamos</div><h2>Do briefing à <em>entrega no prazo</em></h2></div>
     <div class="proc">
       <div class="pst rv"><div><h3>Briefing</h3><p>Você conta a necessidade: aplicação, volume, material e prazo.</p></div></div>
       <div class="pst rv"><div><h3>Projeto</h3><p>Análise técnica, viabilidade e desenvolvimento do molde ou formato.</p></div></div>
@@ -235,14 +238,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   </div>
 </section>
 
-<section id="diferenciais" class="alt">
+<section id="diferenciais" class="soft">
   <div class="wrap">
-    <div class="center rv"><div class="eyebrow">Por que a Century Shalom</div><h2>Fornecedor que <span class="grad">sua produção não precisa cobrar</span></h2></div>
+    <div class="center rv"><div class="eyebrow">Por que a Century Shalom</div><h2>Um fornecedor em quem <em>sua produção confia</em></h2></div>
     <div class="grid g4">
-      <div class="card rv"><div class="ic"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="6"/><path class="a" d="M16 16l9-9M21 6.500V11h4.500"/></svg></div><h3>Precisão</h3><p>Controle dimensional e visual para peças que encaixam e embalagens que vedam.</p></div>
-      <div class="card rv"><div class="ic"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><path class="a" d="M16 9v7l5 3"/></svg></div><h3>Prazo</h3><p>Planejamento de produção e reposição para você não parar a sua linha.</p></div>
-      <div class="card rv"><div class="ic"><svg viewBox="0 0 32 32"><path d="M12 4h8M13 4v8L6 25a2.500 2.500 0 0 0 2.200 3.500h15.600A2.500 2.500 0 0 0 26 25l-7-13V4"/><path class="a" d="M10 20h12"/></svg></div><h3>Suporte técnico</h3><p>Orientação na escolha de material, espessura, cor e acabamento.</p></div>
-      <div class="card rv"><div class="ic"><svg viewBox="0 0 32 32"><path d="M16 4l10 4v8c0 6-4.500 10-10 12C10.500 26 6 22 6 16V8z"/><path class="a" d="M11.500 16l3.200 3.200L21 13"/></svg></div><h3>Parceria</h3><p>Atendimento próximo, com resposta rápida e negociação transparente.</p></div>
+      <div class="card rv"><div class="ico-wrap"><svg class="ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="5"/><path class="a" d="M16 16l8-8"/></svg></div><h3>Precisão</h3><p>Controle dimensional e visual para peças que encaixam e embalagens que vedam.</p></div>
+      <div class="card rv"><div class="ico-wrap"><svg class="ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><path class="a" d="M16 9v7l5 3"/></svg></div><h3>Prazo</h3><p>Planejamento de produção e reposição para você não parar a sua linha.</p></div>
+      <div class="card rv"><div class="ico-wrap"><svg class="ico" viewBox="0 0 32 32"><path d="M12 4h8M13 4v8L6 25a2.500 2.500 0 0 0 2.200 3.500h15.600A2.500 2.500 0 0 0 26 25l-7-13V4"/><path class="a" d="M10 20h12"/></svg></div><h3>Suporte técnico</h3><p>Orientação na escolha de material, espessura, cor e acabamento.</p></div>
+      <div class="card rv"><div class="ico-wrap"><svg class="ico" viewBox="0 0 32 32"><path d="M16 4l10 4v8c0 6-4.500 10-10 12C10.500 26 6 22 6 16V8z"/><path class="a" d="M11.500 16l3.200 3.200L21 13"/></svg></div><h3>Parceria</h3><p>Atendimento próximo, com resposta rápida e negociação transparente.</p></div>
     </div>
   </div>
 </section>
@@ -262,8 +265,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <section class="final">
   <div class="wrap rv">
-    <h2>Pronto para falar de <span class="grad">plástico de verdade?</span></h2>
-    <p class="lead" style="margin:0 auto">Mande o seu briefing e receba uma proposta objetiva da equipe comercial da Century Shalom.</p>
+    <h2>Pronto para falar de plástico de verdade?</h2>
+    <p class="lead">Envie o seu briefing e receba uma proposta objetiva da equipe comercial da Century Shalom.</p>
     <div class="cta-row">
       <a href="#orcamento" class="btn">Solicitar orçamento</a>
       <a href="#" class="btn wa" data-wa="Olá! Gostaria de um orçamento com a Century Shalom.">Chamar no WhatsApp</a>
@@ -272,9 +275,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 </section>
 
 <footer><div class="wrap">
-  <div><b>Century Shalom — Indústria de Plásticos</b><br>Injeção • Sopro • Embalagens e Componentes</div>
-  <div>Rua Renato Werneck, 1117 – Dona Amélia<br>Araçatuba - SP · CEP 16050-660<br>contato@seudominio.com.br · (00) 0000-0000</div>
-  <div>© <span id="yr"></span> Century Shalom. Todos os direitos reservados.</div>
+  <div><img src="logo.png" alt="Century Shalom"><br>Injeção • Sopro • Embalagens e Componentes</div>
+  <div><b>Endereço</b><br>Rua Renato Werneck, 1117 – Dona Amélia<br>Araçatuba - SP · CEP 16050-660</div>
+  <div><b>Contato</b><br>contato@seudominio.com.br<br>(00) 0000-0000</div>
+  <div class="copy">© <span id="yr"></span> Century Shalom Indústria de Plásticos. Todos os direitos reservados.</div>
 </div></footer>
 
 <a class="wafab" data-wa="Olá! Vim pelo site e gostaria de falar com o comercial." aria-label="WhatsApp" href="#">
@@ -283,7 +287,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <script>
 /* ===== CONFIGURAÇÃO ===== */
-const WHATSAPP = "5514991570389"; // DDI + DDD + número, só dígitos. Ex.: 5511999998888
+const WHATSAPP = "5514991570389"; // DDI + DDD + número, só dígitos
 /* ======================== */
 const wa=(t)=>`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`;
 document.querySelectorAll('[data-wa]').forEach(a=>{a.href=wa(a.dataset.wa);a.target='_blank';a.rel='noopener'});
@@ -293,8 +297,8 @@ document.getElementById('form').addEventListener('submit',e=>{
   e.preventDefault();
   const f=e.target,d=Object.fromEntries(new FormData(f));
   const miss=['nome','empresa','tel','tipo'].filter(k=>!String(d[k]||'').trim());
-  f.querySelectorAll('input,select').forEach(i=>i.style.outline='');
-  if(miss.length){miss.forEach(k=>f.elements[k].style.outline='2px solid #ff5a5a');f.elements[miss[0]].focus();return}
+  f.querySelectorAll('input,select').forEach(i=>i.style.borderColor='');
+  if(miss.length){miss.forEach(k=>f.elements[k].style.borderColor='#e5484d');f.elements[miss[0]].focus();return}
   const t=`*Pedido de orçamento — Site*\nNome: ${d.nome}\nEmpresa: ${d.empresa}\nWhatsApp: ${d.tel}\nE-mail: ${d.email||'-'}\nPreciso de: ${d.tipo}\nVolume mensal: ${d.vol||'-'}\nDetalhes: ${d.msg||'-'}`;
   window.open(wa(t),'_blank');
 });
