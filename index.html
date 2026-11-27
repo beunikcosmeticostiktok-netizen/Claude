@@ -318,7 +318,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
 /* Opcional: URL do Google Apps Script que grava os pedidos numa planilha (veja leads-google-sheets.gs) */
 const LEADS_ENDPOINT = "";
 /* Endereço do sistema que recebe os contatos (ex.: https://sistema.seudominio.com.br/api/leads). Vazio = não envia. */
-const LEADS_API_URL = "";
+const LEADS_API_URL = "https://centuryshalom.vercel.app/api/leads";
 
 async function saveLead(d){
   const lead={...d,pagina:location.href,data:new Date().toISOString()};
