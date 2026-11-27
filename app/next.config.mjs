@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+  async rewrites() {
+    // a raiz do site mostra a landing page (public/landing.html); o sistema fica em /login e /painel
+    return { beforeFiles: [{ source: '/', destination: '/landing.html' }] };
+  },
   async headers() {
     return [{
       source: '/(.*)',

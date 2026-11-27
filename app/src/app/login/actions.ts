@@ -9,7 +9,7 @@ export async function signIn(formData: FormData) {
     password: String(formData.get('password') ?? ''),
   });
   if (error) redirect('/login?erro=credenciais');
-  redirect('/');
+  redirect('/painel');
 }
 
 export async function signOut() {

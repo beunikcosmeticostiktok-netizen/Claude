@@ -12,5 +12,5 @@ export async function setPassword(formData: FormData) {
   if (p1 !== p2) redirect('/definir-senha?erro=diferente');
   const { error } = await supabase.auth.updateUser({ password: p1, data: { must_change_password: false } });
   if (error) redirect('/definir-senha?erro=falha');
-  redirect('/');
+  redirect('/painel');
 }

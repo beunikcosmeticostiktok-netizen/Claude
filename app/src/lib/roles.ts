@@ -8,7 +8,7 @@ export const ALL_ROLES = Object.keys(ROLE_LABEL) as Role[];
 export type NavItem = { href: string; label: string; roles: Role[] };
 /** Somente módulos já construídos aparecem no menu. */
 export const NAV: NavItem[] = [
-  { href: '/', label: 'Início', roles: ALL_ROLES },
+  { href: '/painel', label: 'Início', roles: ALL_ROLES },
   { href: '/clientes', label: 'Clientes', roles: ALL_ROLES },
   { href: '/crm', label: 'CRM', roles: ['admin', 'gestor', 'comercial'] },
   { href: '/orcamentos', label: 'Orçamentos', roles: ['admin', 'gestor', 'comercial', 'financeiro'] },

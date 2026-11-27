@@ -42,6 +42,8 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;height:7
 .logo img{height:56px;width:auto}
 nav ul{display:flex;gap:30px;list-style:none;font-size:.92rem;color:var(--mut);font-weight:500}nav ul a:hover{color:var(--navy)}
 nav .btn{padding:11px 22px;font-size:.9rem}
+.navr{display:flex;gap:10px;align-items:center}.show-m{display:none}
+@media(max-width:560px){.hide-m{display:none}.show-m{display:inline}.navr{gap:6px}nav .logo img{height:50px}}
 @media(max-width:860px){nav ul{display:none}nav .wrap{height:84px}.logo img{height:58px}nav .btn{padding:8px 14px;font-size:.74rem;white-space:nowrap}nav .wrap{gap:12px}}
 
 /* hero */
@@ -153,7 +155,10 @@ details{padding:18px 4px}
 <nav><div class="wrap">
   <a href="#" class="logo"><img src="logo.png" alt="Century Shalom — Indústria de Plásticos"></a>
   <ul><li><a href="#solucoes">Soluções</a></li><li><a href="#segmentos">Segmentos</a></li><li><a href="#processo">Como trabalhamos</a></li><li><a href="#diferenciais">Diferenciais</a></li><li><a href="#faq">Dúvidas</a></li></ul>
-  <a href="#orcamento" class="btn">Solicitar orçamento</a>
+  <div class="navr">
+    <a href="https://centuryshalom.vercel.app/login" class="btn line">Entrar</a>
+    <a href="#orcamento" class="btn"><span class="hide-m">Solicitar orçamento</span><span class="show-m">Orçamento</span></a>
+  </div>
 </div></nav>
 
 <header class="hero" id="orcamento"><div class="wrap">

@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export default async function PortalLayout({ children }: { children: React.ReactNode }) {
   const { user, profile, portal, roles } = await getSession();
   if (user.user_metadata?.must_change_password) redirect('/definir-senha');
-  if (!profile?.active || portal.length === 0) redirect(roles.length ? '/' : '/login');
+  if (!profile?.active || portal.length === 0) redirect(roles.length ? '/painel' : '/login');
   return (
     <>
       <header className="ptop"><div className="in">

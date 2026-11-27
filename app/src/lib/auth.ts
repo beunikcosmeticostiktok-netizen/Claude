@@ -18,6 +18,6 @@ export async function getSession() {
 /** Garante, no servidor, que quem chama é administrador (a checagem real também existe no banco). */
 export async function requireRole(allowed: Role[]) {
   const s = await getSession();
-  if (!s.profile?.active || !s.roles.some((r) => allowed.includes(r))) redirect('/');
+  if (!s.profile?.active || !s.roles.some((r) => allowed.includes(r))) redirect('/painel');
   return s;
 }
