@@ -7,7 +7,7 @@ import { signOut } from '../login/actions';
 export const dynamic = 'force-dynamic';
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
-  const { user, profile, roles, portal } = await getSession();
+  const { user, profile, profileError, roles, portal } = await getSession();
   if (user.user_metadata?.must_change_password) redirect('/definir-senha');
 
   const Blocked = ({ title, text }: { title: string; text: string }) => (
@@ -17,7 +17,9 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       <form action={signOut}><button className="btn line full" type="submit">Sair</button></form>
     </div></div>
   );
-  if (!profile?.active) return <Blocked title="Acesso desativado" text="Seu acesso foi desativado. Fale com o administrador." />;
+  if (profileError) return <Blocked title="Não foi possível carregar o seu perfil" text={`Tente de novo em instantes. Se persistir, informe ao suporte este código: ${profileError.code ?? ''} ${profileError.message}`} />;
+  if (!profile) return <Blocked title="Cadastro incompleto" text="Seu login existe, mas o cadastro interno ainda não foi concluído. Se você é o administrador, abra /setup e use a palavra secreta; senão, fale com o administrador." />;
+  if (!profile.active) return <Blocked title="Acesso desativado" text="Seu acesso foi desativado. Fale com o administrador." />;
   if (roles.length === 0 && portal.length > 0) redirect('/portal');
   if (roles.length === 0) {
     return <Blocked title="Acesso ainda não liberado"
