@@ -62,5 +62,7 @@ envio, versões, impressão em PDF), pedidos (4 situações, liberação, nota f
 (aprovar/pedir alteração, indicar transportadora, acompanhar andamento).
 Banco: `supabase/migrations` (5 migrações, 50 testes). Aplicação: `app/` (19 testes).
 
-**Pendente:** parâmetros de custo salvos no sistema (hoje a calculadora não grava), projetos exclusivos, estoque, compras,
+**Também pronto (Etapa 2, parte 1):** estoque (livro-razão imutável, reservas, transferências, estornos), fornecedores, pedidos de compra (aprovação do gestor) e recebimentos com entrada em estoque sem duplicidade (64 testes no banco).
+
+**Pendente:** parâmetros de custo salvos no sistema (hoje a calculadora não grava), projetos exclusivos,
 produção/apontamento, expedição, financeiro, loja, e-mail/WhatsApp automáticos. Cada módulo novo começa pelo banco e seus testes.

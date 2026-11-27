@@ -39,6 +39,17 @@ export const DB_ERRORS: Record<string, string> = {
   loss_reason_required: 'Informe o motivo da perda.',
   number_required: 'Informe o número da nota.',
   name_required: 'Informe o nome da transportadora.',
+  insufficient_available: 'Quantidade maior que o disponível (o que está reservado para pedidos não sai).',
+  insufficient_stock: 'Saldo insuficiente neste local.',
+  invalid_qty: 'Quantidade inválida.', invalid_kind: 'Tipo de movimento inválido.',
+  already_reversed: 'Este movimento já foi estornado.', cannot_reverse_reversal: 'Um estorno não pode ser estornado.',
+  exceeds_order: 'A reserva ultrapassa a quantidade do pedido.', not_active: 'Reserva já encerrada.',
+  po_locked: 'Pedido de compra já aprovado: as linhas não podem mais mudar.', not_draft: 'O pedido de compra não está em rascunho.',
+  not_approved: 'O pedido precisa ser aprovado antes de enviar.', has_receipts: 'Já houve recebimento: não é possível cancelar.',
+  not_cancellable: 'Este pedido de compra não pode mais ser cancelado.', not_receivable: 'Este pedido de compra não está liberado para recebimento.',
+  over_receipt: 'A quantidade recebida passa do que foi comprado.', key_required: 'Atualize a página e tente de novo.',
+  supplier_not_found: 'Fornecedor não encontrado.', line_not_found: 'Linha não encontrada.',
+  suppliers_tax_id_uk: 'Já existe um fornecedor com este CNPJ/CPF.', suppliers_tax_id_valid: 'CNPJ/CPF inválido.',
 };
 export const dbErrorKey = (m?: string | null) => Object.keys(DB_ERRORS).find((k) => m?.includes(k)) ?? 'falha';
 export const dbErrorText = (k?: string) => (k && DB_ERRORS[k]) || (k ? 'Não foi possível concluir a ação.' : '');

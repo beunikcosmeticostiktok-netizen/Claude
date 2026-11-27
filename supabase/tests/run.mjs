@@ -20,7 +20,7 @@ const { db, files } = await createDb();
 console.log('Migrações aplicadas:', files.length);
 const ctx = { db, as, createUser, sudo, test, ok, eq, fails };
 
-const suites = ['./suites/foundation.mjs', './suites/crm.mjs', './suites/catalog.mjs', './suites/quotes.mjs'];
+const suites = ['./suites/foundation.mjs', './suites/crm.mjs', './suites/catalog.mjs', './suites/quotes.mjs', './suites/stock.mjs'];
 for (const s of suites) {
   try { const m = await import(s); console.log('\n' + s); await m.default(ctx); }
   catch (e) {
