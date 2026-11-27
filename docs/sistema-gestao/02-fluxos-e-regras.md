@@ -48,7 +48,7 @@ mao_de_obra   = (tempo_ciclo / cavidades) × operadores × custo_hora_MO ÷ efic
 preparacao    = (horas_setup × (custo_hora_maquina + custo_hora_MO)) ÷ quantidade_do_lote
 ```
 
-**Preço (decidido):** **markup mínimo = 1,5** sobre o custo (`preço ≥ custo × 1,5`). O **desconto é livre até o markup resultante chegar a 1,5**; abaixo disso, exige aprovação do Gestor (§4). Regime **Simples Nacional**: imposto é percentual sobre a **receita** (alíquota efetiva informada pelo contador). **⚠ Em aberto:** se o 1,5 incide sobre custo direto ou custo completo, e se o imposto está dentro ou fora do 1,5 (ver `07`, N1 e N2). O preço sugerido é **proposta**: o vendedor ajusta.
+**Preço (decidido):** `preço mínimo = custo_completo × 1,5`, onde **custo completo = custo direto + preparação + rateio de todas as despesas fixas** (ver `07`, rodada 2). O **imposto do Simples Nacional está dentro** desse 1,5 (não é somado depois). O **desconto é livre até o markup chegar a 1,5**; abaixo disso, exige aprovação do Gestor (§4). Como imposto e eventual comissão saem do 1,5, a ficha mostra também o **resultado estimado após imposto** (`preço − custo_completo − imposto sobre a receita − comissão`) e **alerta se ficar abaixo de zero ou do desejado**, usando a alíquota efetiva informada pelo contador. O preço sugerido é **proposta**: o vendedor ajusta.
 
 ### Regras
 - Custos e margens são **somente internos**; o PDF e o portal nunca os exibem.
@@ -62,7 +62,7 @@ preparacao    = (horas_setup × (custo_hora_maquina + custo_hora_MO)) ÷ quantid
 
 - **Numeração** própria; cada alteração relevante cria **nova versão** (`v1, v2…`). A versão *Enviada* é **imutável**.
 - **Aprovação interna** obrigatória quando: **markup resultante < 1,5** (o desconto é livre até esse ponto) ou prazo/condição fora do padrão **[a definir]**. Aprovador: Gestor (ou Administrador).
-- **Preço por faixa de quantidade** vindo do cadastro; o vendedor pode sobrescrever com justificativa.
+- **Preço por faixa de quantidade (decidido):** cada item tem **preço separado por faixa** — até 300 · até 2.000 · até 5.000 · até 15.000 · a partir de 16.000 (**⚠ corrigir o vão 15.001–15.999**, ver `07` N10). As faixas são parâmetros do sistema; o preço de cada faixa é cadastrado **por item**. O vendedor pode sobrescrever com justificativa, respeitando o markup mínimo.
 - **Validade**: ao vencer, estado *Expirado* (job diário); reabrir cria nova versão.
 - **PDF** gerado pelo servidor com a identidade visual, a partir do retrato da versão (não do dado “vivo”).
 - **Portal**: o cliente vê a versão enviada; ao **Aprovar**, o sistema grava usuário, versão, data/hora e IP. **Solicitar alteração** reabre negociação e gera nova versão quando o comercial responder.
@@ -94,7 +94,7 @@ preparacao    = (horas_setup × (custo_hora_maquina + custo_hora_MO)) ÷ quantid
 | Produção | Não liberado · Liberado · Programado · Em produção · Concluído · Parcial |
 | Logístico | Aguardando · Disponível p/ separação · Separado · Pronto p/ coleta · Coleta agendada · Coletado parcial/total |
 
-**Liberação para produção**: conjunto de **regras configuráveis** (aprovação do orçamento, aprovação técnica/amostra, **sinal de 50% recebido e validado pelo Financeiro (decidido)**, material, máquina e molde disponíveis). **⚠ Em aberto:** se o sinal vale para a loja e para pronta entrega (`07`, N4 e N5). O sistema mostra **quais condições faltam**; exceção só por Gestor, com justificativa registrada.
+**Liberação para produção**: conjunto de **regras configuráveis**: aprovação do orçamento, aprovação técnica/amostra, material/máquina/molde disponíveis e **sinal de 50% recebido e validado pelo Financeiro — decidido apenas para produção grande** (limite que define “grande”: **⚠ em aberto**, `07` N9). **Pronta entrega e loja: pagamento integral** antes de separar/coletar. Exceção só por Gestor, com justificativa registrada.
 
 ## 8. Produção (E2)
 
@@ -138,6 +138,8 @@ Entidades separadas: **orçamento ≠ pedido ≠ título financeiro ≠ moviment
 - Quantidades, volumes, peso, transportadora/responsável, datas, documentos, rastreio.
 - Coletas **parciais**: o pedido mostra coletado × saldo.
 - **Coletado ≠ entregue**: a entrega ao cliente só é marcada com comprovante ou confirmação **[a definir]**.
+- **Decidido:** a coleta **só é liberada com a nota fiscal anexada** (número e chave) — vale para pedidos de orçamento e da loja. No FOB, o **cliente indica a transportadora/responsável** no pedido antes do agendamento.
+- **Loja, arrependimento (7 dias):** o pedido da loja registra a **data de recebimento** e abre uma **solicitação de devolução** dentro do prazo; o reembolso é um estorno financeiro registrado, nunca exclusão. **⚠ Validar com jurídico/contador** a contagem do prazo.
 
 ## 13. Portal do cliente — linha do tempo
 
@@ -162,8 +164,8 @@ Regras já previsíveis:
 - Só vende o que está **publicado**, com preço de loja, **múltiplo/quantidade mínima** e **disponibilidade** (estoque disponível ou "sob encomenda" [a definir]).
 - Reserva de estoque ao confirmar o pedido; liberação se não houver pagamento em **[prazo]**.
 - Cliente cria conta (mesmo login do portal) e acompanha o pedido.
-- **Decidido:** a loja atende **empresas e consumidor final**; **acima de 300 peças há preço especial**; aceita **encomenda** (sem estoque, com prazo informado); entrega por **frete FOB ou retirada**; notas emitidas manualmente.
-- **Em aberto:** forma exata da faixa de 300 peças, sinal na loja, política de devolução para consumidor final e prazo de pagamento da reserva (`07`, N3–N8).
+- **Decidido:** a loja atende **empresas e consumidor final** e **vende apenas estoque já produzido** (não aceita encomenda: encomenda segue pelo orçamento); **pagamento integral** na compra; entrega por **frete FOB indicado pelo cliente** ou retirada; **nota fiscal emitida manualmente** e anexada ao pedido antes da coleta; **arrependimento em 7 dias, só na loja on-line**.
+- **Em aberto:** quanto do estoque fica disponível na loja (`07` N11), se as faixas de preço valem na loja (N12), pedido mínimo (N13) e quem paga o frete da devolução e como registrar a data de recebimento (N14).
 
 ## 15. Notificações
 

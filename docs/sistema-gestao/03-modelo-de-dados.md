@@ -60,7 +60,8 @@ erDiagram
 | `items` | `type` (produto_acabado, materia_prima, componente, embalagem_auxiliar, servico), `sku` **único**, categoria, descrição, unidade, dimensões, peso, capacidade, material, cor/acabamento, mín./múltiplo de venda, prazo estimado, ativo |
 | `item_variants` | `item_id`, cor, acabamento, SKU da variante |
 | `uom_conversions` | `item_id`, de, para, fator |
-| `price_tiers` | `item_id`, `qty_min`, preço, vigência |
+| `price_tier_defs` | faixas do sistema: `ordem`, `qty_min`, `qty_max` (5 faixas: até 300 / até 2.000 / até 5.000 / até 15.000 / a partir de 16.000 — ⚠ confirmar limites) |
+| `price_tiers` | `item_id`, `tier_id`, preço, vigência — **um preço por faixa e por item** |
 | `bom_lines` | `item_id` (acabado), `component_id`, quantidade, perda % |
 | `routings` / `routing_steps` | roteiro por item: etapas ordenadas (injeção/sopro, rebarbação, montagem…) |
 | `machines` | código, tipo (injeção/sopro), capacidade, status |
@@ -90,7 +91,7 @@ erDiagram
 ### Pedidos e produção
 | Tabela | Campos principais |
 |---|---|
-| `orders` | número, `customer_id`, `quote_version_id` **ÚNICO**, `channel` (orçamento \| loja), `status_commercial`, `status_financial`, `status_production`, `status_logistics`, condições |
+| `orders` | número, `customer_id`, `quote_version_id` **ÚNICO**, `channel` (orçamento \| loja), `status_commercial`, `status_financial`, `status_production`, `status_logistics`, condições, `deposit_pct` (sinal exigido), **`carrier_name`/`carrier_contact` (transportadora indicada pelo cliente)**, **`invoice_number`/`invoice_key` + anexos PDF/XML** (coleta só liberada com NF), `received_at` (recebimento pelo cliente) |
 | `order_items` | `order_id`, `item_id`, quantidade, preço, `qty_produced`, `qty_shipped` |
 | `order_release_rules` | condições exigidas por pedido e se estão atendidas (quem liberou exceção) |
 | `production_orders` | `order_item_id`, máquina, molde, roteiro, status, quantidade planejada |
@@ -124,7 +125,7 @@ erDiagram
 `shipments` (pedido, status, transportadora/responsável, previsão, data efetiva, rastreio) · `shipment_items` (item do pedido, quantidade, volumes, peso) · documentos via `attachments`.
 
 ### Loja
-`store_products` (item, publicado, preço de loja, mínimo/múltiplo, disponibilidade) · `carts`, `cart_items` · `store_payments` (provedor, `external_id`, status, bruto, taxa) — **só preenchida quando houver provedor real**.
+`store_products` (item, publicado, preço de loja, mínimo/múltiplo, **quantidade disponível na loja**) · `carts`, `cart_items` · `store_payments` (provedor = InfinitePay, `order_nsu`, `external_id`, status, bruto, taxa, **confirmado por consulta à API**) — só preenchida com provedor real · `store_returns` (pedido, motivo, solicitado em, **prazo de 7 dias**, status, reembolso).
 
 ### Transversais
 `audit_log` (ator, ação, entidade, antes/depois, data, IP) · `notifications` (destinatário, evento, lida) · `integration_logs` (integração, direção, status, payload resumido) · `idempotency_keys` (chave, escopo, resultado).

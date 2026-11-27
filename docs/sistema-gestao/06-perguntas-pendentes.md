@@ -25,7 +25,7 @@ Nenhuma resposta abaixo foi presumida no projeto. 🔴 = bloqueia o início da e
 11. ✅ (parcial) **E1** — **Despesas fixas**: quais são e **como rateá-las** (por hora-máquina, por peso produzido, percentual sobre faturamento)? Essa é decisão da gestão/contabilidade.
 12. ✅ (parcial) **E1** — **Impostos** sobre venda e comissão: regime tributário, percentuais, o que embutir no preço.
 13. ✅ **E1** — **Markup ou margem sobre preço?** Margem mínima por categoria? Limite de desconto do vendedor sem aprovação?
-14. 🟡 Preço por faixa de quantidade: quais faixas? Valem para linha e projetos exclusivos?
+14. ✅ Preço por faixa de quantidade: quais faixas? Valem para linha e projetos exclusivos?
 15. 🟡 Perda prevista de material: um percentual por produto, por processo ou geral?
 16. 🟡 Moldes de projeto exclusivo: cobrados do cliente (integral, parcelado, amortizado no preço)? Quem é o dono do molde?
 17. 🟡 Desenvolvimento e amostra: cobrados? Valor-padrão ou por projeto?
@@ -63,18 +63,18 @@ Nenhuma resposta abaixo foi presumida no projeto. 🔴 = bloqueia o início da e
 
 ## Expedição (E2)
 
-37. 🟡 Transportadoras habituais? Cliente sempre retira (coleta) ou há entrega própria/frete?
+37. ✅ (parcial) Transportadoras habituais? Cliente sempre retira (coleta) ou há entrega própria/frete?
 38. 🟡 O que comprova **entrega** ao cliente (assinatura, canhoto, confirmação no portal)?
 
 ## Loja / e-commerce (L)
 
 39. ✅ **L** — Loja é **B2B (CNPJ)**, **B2C (consumidor)** ou ambos? Há pedido mínimo e múltiplos de venda?
 40. ✅ (parcial) **L** — Preço de loja: tabela única, por faixa, por perfil de cliente?
-41. ✅ (parcial) **L** — Disponibilidade: só vende o que há em estoque, ou aceita **sob encomenda** com prazo?
+41. ✅ **L** — Disponibilidade: só vende o que há em estoque, ou aceita **sob encomenda** com prazo?
 42. ✅ **L** — Formas de pagamento: Pix, cartão, boleto? Já têm conta em algum gateway (Mercado Pago, Asaas, Pagar.me, Stripe)?
 43. ✅ **L** — Entrega: frete por tabela, transportadora própria, só retirada na fábrica?
 44. ✅ **L** — Emitem **nota fiscal** por pedido? Qual software/contador emite hoje?
-45. 🟡 **L** — Políticas de troca, devolução e arrependimento (CDC se houver consumidor final).
+45. ✅ (parcial) **L** — Políticas de troca, devolução e arrependimento (CDC se houver consumidor final).
 46. 🟡 **L** — Quais produtos de linha entram primeiro (SKU, fotos, medidas, preços)?
 
 ## Integrações e marca

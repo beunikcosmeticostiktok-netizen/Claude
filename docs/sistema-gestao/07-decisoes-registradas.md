@@ -65,3 +65,37 @@ Resumo da pesquisa em fontes públicas (a confirmar na conta e na documentação
 Isso mantém a regra do projeto: **cobrança paga só é baixada após validação** (no L1 pelo Financeiro; no L2 pela confirmação da API).
 
 Fontes: [Documentação do checkout InfinitePay](https://www.infinitepay.io/checkout-documentacao) · [Página para desenvolvedores](https://www.infinitepay.io/desenvolvedores) · [Link de pagamento](https://www.infinitepay.io/checkout-externo) · [Webhooks (AsyncAPI, terceiros)](https://apis.io/asyncapis/cloudwalk/cloudwalk-infinitepay-webhooks/)
+
+
+---
+
+# Rodada 2 — respostas às dúvidas N1–N8 (27/11/2026)
+
+| # | Resposta | Efeito |
+|---|---|---|
+| N1 | O markup 1,5 incide **depois de todas as despesas** (custo completo). | `preço mínimo = custo_completo × 1,5`; o rateio das despesas fixas entra **antes** do markup. |
+| N2 | O imposto do Simples **está dentro** do 1,5. | Não se soma imposto depois. A ficha mostra o **resultado estimado após imposto** e alerta se o 1,5 não for suficiente com a alíquota do mês. |
+| N3 | **Preço separado por faixa**: até 300 · até 2.000 · até 5.000 · até 15.000 · a partir de 16.000. | Cada item tem 5 preços (um por faixa). Faixas são parâmetros do sistema. **⚠ Vão entre 15.001 e 15.999 peças** (ver N10). |
+| N4 | **Sinal de 50% só para produção grande.** A **loja vende estoque já produzido.** | A loja **não aceita encomenda** (encomenda vai pelo orçamento). Sinal vale para pedidos que exigem produção. |
+| N5 | **Pronta entrega: pago integral.** | Pedido de estoque/loja só é liberado para separação com pagamento integral validado. |
+| N6 | **O cliente indica o transporte** (FOB). | Campos de transportadora no pedido, preenchidos pelo cliente; sem eles, a coleta não é agendada. |
+| N7 | **Arrependimento/devolução: 7 dias, só na loja on-line.** | Registro de recebimento e de solicitação de devolução; reembolso por estorno. Prazo costuma ser contado do **recebimento**: **validar com jurídico/contador.** |
+| N8 | **Nota manual nos dois casos** e a **coleta só sai com NF anexada**. | Bloqueio de coleta sem número e chave da nota no pedido (orçamento e loja). |
+
+## Efeito sobre decisões anteriores
+
+- **D6 (sinal 50%)**: passa a valer **só para produção grande**; pronta entrega é paga integralmente.
+- **D8 (“também aceitamos encomenda”)**: a **loja** vende só estoque produzido; a **encomenda** continua existindo pelo **canal de orçamento**.
+- **D11 (NF manual)**: confirmada para orçamento e loja; agora **bloqueia a coleta** até a nota ser anexada.
+
+## Novas dúvidas (rodada 2)
+
+| # | Pergunta | Por que importa |
+|---|---|---|
+| N9 | O que define **“produção grande”** para exigir sinal de 50%? Uma quantidade (por exemplo, a partir da faixa 2), um valor mínimo em R$, ou **todo** pedido que vai para a fábrica? | Sem isso o sistema não sabe quando cobra o sinal. |
+| N10 | A última faixa começa em **15.001** ou em **16.000**? (A resposta deixa um vão entre 15.001 e 15.999.) | Evita preço indefinido nessa quantidade. |
+| N11 | **Quanto do estoque** produzido vai para a loja? Quem decide, para não vender o que já está reservado a um pedido? | Define a quantidade publicada e a reserva. |
+| N12 | Na loja, o preço de **1 unidade** é o da faixa “até 300”? As demais faixas valem também para compras grandes na loja (limitadas ao estoque)? | Define o preço do carrinho. |
+| N13 | A loja tem **quantidade mínima** por pedido? | Regra do checkout. |
+| N14 | Na **devolução de 7 dias**, quem paga o frete? E como o sistema fica sabendo a **data de recebimento** (FOB, cliente retira): confirmação do cliente, comprovante de coleta? | A contagem do prazo depende dessa data. |
+| N15 | Há **comissão de vendedor**? Em que percentual? | Comissão sai do 1,5; afeta o resultado estimado. |
