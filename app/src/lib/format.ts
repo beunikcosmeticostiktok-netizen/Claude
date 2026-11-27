@@ -9,3 +9,11 @@ export const brl = (n: number | string | null | undefined) =>
   new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(n ?? 0));
 export const dataBR = (iso: string | null | undefined) =>
   iso ? new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo' }).format(new Date(iso)) : '';
+
+/** Converte "1.234,56" ou "3,2" ou "3.2" em número; vazio vira null; inválido vira NaN. */
+export function parseMoney(v: FormDataEntryValue | null | undefined): number | null {
+  const s = String(v ?? '').trim().replace(/\s/g, '').replace(/^R\$/i, '');
+  if (!s) return null;
+  const norm = s.includes(',') ? s.replace(/\./g, '').replace(',', '.') : s;
+  return /^\d+(\.\d+)?$/.test(norm) ? Number(norm) : NaN;
+}

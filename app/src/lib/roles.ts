@@ -10,6 +10,7 @@ export type NavItem = { href: string; label: string; roles: Role[] };
 export const NAV: NavItem[] = [
   { href: '/', label: 'Início', roles: ALL_ROLES },
   { href: '/clientes', label: 'Clientes', roles: ALL_ROLES },
+  { href: '/produtos', label: 'Produtos', roles: ALL_ROLES },
   { href: '/usuarios', label: 'Usuários', roles: ['admin'] },
 ];
 export const canSee = (roles: Role[], allowed: Role[]) => roles.some((r) => allowed.includes(r));
