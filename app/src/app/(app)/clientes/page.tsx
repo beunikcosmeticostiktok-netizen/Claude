@@ -37,7 +37,7 @@ export default async function Clientes({ searchParams }: { searchParams: Promise
           <tbody>
             {(data ?? []).map((c) => (
               <tr key={c.id}>
-                <td><b>{c.legal_name}</b>{c.trade_name && <div className="muted small">{c.trade_name}</div>}</td>
+                <td><Link href={`/clientes/${c.id}`}><b>{c.legal_name}</b></Link>{c.trade_name && <div className="muted small">{c.trade_name}</div>}</td>
                 <td>{formatTaxId(c.tax_id) || '—'}</td>
                 <td>{c.segment ?? '—'}</td>
                 <td><span className={`badge ${c.active ? 'on' : 'off'}`}>{c.active ? 'Ativo' : 'Inativo'}</span></td>

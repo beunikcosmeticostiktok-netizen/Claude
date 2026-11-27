@@ -71,3 +71,36 @@ input:focus,select:focus,textarea:focus{outline:none;background:#fff;border-colo
   .main{padding:18px 16px 40px}
 }
 @media(min-width:861px){.mobilenav{display:none}}
+
+/* componentes adicionais */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tabs a{padding:6px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.82rem;font-weight:600}
+.tabs a.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px 20px}
+.kv small{display:block;color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em}
+.kv b{font-weight:600}
+.inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.inline input,.inline select{width:auto;min-width:90px;padding:8px 10px}
+.timeline{display:grid;gap:0;margin:8px 0}
+.timeline li{list-style:none;display:flex;gap:12px;align-items:flex-start;padding:8px 0;position:relative}
+.timeline li::before{content:"";width:18px;height:18px;border-radius:50%;border:2px solid var(--line);background:#fff;flex:none;margin-top:2px}
+.timeline li.done::before{background:var(--ok);border-color:var(--ok)}
+.timeline li:not(:last-child)::after{content:"";position:absolute;left:8px;top:28px;bottom:-8px;width:2px;background:var(--line)}
+.timeline li.done:not(:last-child)::after{background:var(--ok)}
+.warnrow td{background:#fff3d6}
+.right{text-align:right}
+@media print{
+  .side,.mobilebar,.mobilenav,.noprint{display:none!important}
+  .shell{display:block}.main{padding:0;max-width:none}.card{box-shadow:none;border:0;padding:0}
+  body{background:#fff}
+}
+
+/* portal do cliente */
+.ptop{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.ptop .in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.ptop img{height:44px;width:auto;display:block}
+.pnav{display:flex;gap:6px;flex-wrap:wrap}
+.pnav a{padding:8px 14px;border-radius:999px;font-weight:600;font-size:.88rem;color:var(--mut)}
+.pnav a:hover,.pnav a.on{background:#ffe6d9;color:var(--acc-d)}
+.pmain{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+@media(max-width:640px){.pmain{padding:16px 14px 40px}}

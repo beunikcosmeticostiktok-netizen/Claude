@@ -11,7 +11,8 @@ export async function getSession() {
     supabase.from('user_roles').select('role').eq('user_id', user.id),
   ]);
   const roles = (roleRows ?? []).map((r) => r.role as Role);
-  return { supabase, user, profile, roles };
+  const { data: links } = await supabase.from('customer_users').select('customer_id, access').eq('user_id', user.id).eq('active', true);
+  return { supabase, user, profile, roles, portal: (links ?? []) as { customer_id: string; access: string }[] };
 }
 
 /** Garante, no servidor, que quem chama é administrador (a checagem real também existe no banco). */

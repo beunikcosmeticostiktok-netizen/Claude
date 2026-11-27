@@ -7,7 +7,7 @@ import { signOut } from '../login/actions';
 export const dynamic = 'force-dynamic';
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
-  const { user, profile, roles } = await getSession();
+  const { user, profile, roles, portal } = await getSession();
   if (user.user_metadata?.must_change_password) redirect('/definir-senha');
 
   const Blocked = ({ title, text }: { title: string; text: string }) => (
@@ -18,9 +18,10 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     </div></div>
   );
   if (!profile?.active) return <Blocked title="Acesso desativado" text="Seu acesso foi desativado. Fale com o administrador." />;
+  if (roles.length === 0 && portal.length > 0) redirect('/portal');
   if (roles.length === 0) {
     return <Blocked title="Acesso ainda não liberado"
-      text="Seu login existe, mas ainda não tem permissões. O portal do cliente está em construção: assim que estiver disponível, você receberá o aviso." />;
+      text="Seu login existe, mas ainda não tem permissões. Fale com o administrador." />;
   }
 
   const items = NAV.filter((n) => canSee(roles, n.roles)).map(({ href, label }) => ({ href, label }));

@@ -53,3 +53,14 @@ Aplicação responsiva · banco real e relacional · autenticação e permissõe
 ## O que não vou assumir
 
 Fórmulas de rateio de despesas fixas, margens mínimas, limites de desconto, regras de sinal/adiantamento, prazos-padrão, política de frete, tributação e se a loja atende pessoa física ou só empresas. Todos estão em `06-perguntas-pendentes.md`.
+
+## Estado da construção (atualizado)
+
+**Etapa 1 (comercial) — telas e banco prontos:** acesso por perfil, usuários, clientes (contatos, endereços e logins do portal), CRM
+(leads, funil), produtos com 5 faixas de preço, calculadora de custo, orçamentos versionados (aprovação interna por markup,
+envio, versões, impressão em PDF), pedidos (4 situações, liberação, nota fiscal, recebimento, cancelamento) e **portal do cliente**
+(aprovar/pedir alteração, indicar transportadora, acompanhar andamento).
+Banco: `supabase/migrations` (5 migrações, 50 testes). Aplicação: `app/` (19 testes).
+
+**Pendente:** parâmetros de custo salvos no sistema (hoje a calculadora não grava), projetos exclusivos, estoque, compras,
+produção/apontamento, expedição, financeiro, loja, e-mail/WhatsApp automáticos. Cada módulo novo começa pelo banco e seus testes.
