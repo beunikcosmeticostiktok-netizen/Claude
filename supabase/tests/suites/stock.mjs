@@ -58,7 +58,7 @@ export default async function ({ db, as, createUser, sudo, test, ok, eq, fails }
   });
 
   await test('reserva para pedido: reduz o disponível, não passa do pedido nem do estoque', async () => {
-    const oi = (await sudo(db, `select oi.id, oi.qty from public.order_items oi join public.orders o on o.id=oi.order_id where oi.item_id is not null limit 1`)).rows[0];
+    const oi = (await sudo(db, `select oi.id, oi.qty from public.order_items oi join public.orders o on o.id=oi.order_id where oi.item_id is not null and o.status_commercial <> 'cancelado' order by o.created_at, oi.id limit 1`)).rows[0];
     ok(oi, 'precisa de item de pedido com produto do catálogo');
     const pos0 = Number((await as(db, ana, `select available from public.stock_position where item_id=$1`, [item])).rows[0].available);
     await fails(as(db, producao, `select public.stock_reserve($1,10)`, [oi.id]), 'forbidden');
