@@ -82,7 +82,7 @@ Responder `06-perguntas-pendentes.md` (bloqueantes), validar este escopo, fechar
 | Fatia | Entrega (fluxo inteiro, persistido e validado) |
 |---|---|
 | 1.1 | Projeto, ambientes, migrações, **login multi-perfil**, convites, auditoria, **testes das políticas RLS** |
-| 1.2 | Clientes, contatos, endereços, itens, variantes, preços por faixa, anexos |
+| 1.2 | Clientes, contatos, endereços, itens, variantes, preços por faixa, anexos, **vendedor responsável e cadastro de metas/faixas de comissão** |
 | 1.3 | **Landing → lead → oportunidade** (anti-spam, deduplicação, notificação), funil, tarefas |
 | 1.4 | **Parâmetros e ficha de custo** → preço sugerido e margem |
 | 1.5 | **Orçamento versionado**, aprovação interna por limites, PDF com identidade visual |
@@ -96,7 +96,7 @@ L1 catálogo + carrinho + pedido com pagamento validado manualmente → L2 pagam
 Projetos exclusivos e aprovações, moldes/máquinas, estoque (livro-razão), compras, OP e apontamento, qualidade, expedição/coleta parcial. O portal ganha linha do tempo e produção/coleta.
 
 ### Etapa 3 — Financeiro integrado
-Títulos, caixa, parcelas, baixas parciais, estornos, transferências, comprovantes validados, conciliação manual, fluxo, caixa × competência, margem por pedido.
+Títulos, caixa, parcelas, baixas parciais, estornos, transferências, comprovantes validados, conciliação manual, fluxo, caixa × competência, margem por pedido, **cálculo de comissões por meta**.
 
 ### Etapa 4 — Integrações e evolução
 Cobrança, fiscal, e-mail/WhatsApp, indicadores avançados, integração com o Grupo Masc.

@@ -75,7 +75,7 @@ Fontes: [Documentação do checkout InfinitePay](https://www.infinitepay.io/chec
 |---|---|---|
 | N1 | O markup 1,5 incide **depois de todas as despesas** (custo completo). | `preço mínimo = custo_completo × 1,5`; o rateio das despesas fixas entra **antes** do markup. |
 | N2 | O imposto do Simples **está dentro** do 1,5. | Não se soma imposto depois. A ficha mostra o **resultado estimado após imposto** e alerta se o 1,5 não for suficiente com a alíquota do mês. |
-| N3 | **Preço separado por faixa**: até 300 · até 2.000 · até 5.000 · até 15.000 · a partir de 16.000. | Cada item tem 5 preços (um por faixa). Faixas são parâmetros do sistema. **⚠ Vão entre 15.001 e 15.999 peças** (ver N10). |
+| N3 | **Preço separado por faixa**: 1–300 · 301–2.000 · 2.001–5.000 · 5.001–15.999 · a partir de 16.000. | Cada item tem 5 preços (um por faixa). Faixas são parâmetros do sistema. Vão resolvido na rodada 3. |
 | N4 | **Sinal de 50% só para produção grande.** A **loja vende estoque já produzido.** | A loja **não aceita encomenda** (encomenda vai pelo orçamento). Sinal vale para pedidos que exigem produção. |
 | N5 | **Pronta entrega: pago integral.** | Pedido de estoque/loja só é liberado para separação com pagamento integral validado. |
 | N6 | **O cliente indica o transporte** (FOB). | Campos de transportadora no pedido, preenchidos pelo cliente; sem eles, a coleta não é agendada. |
@@ -93,9 +93,35 @@ Fontes: [Documentação do checkout InfinitePay](https://www.infinitepay.io/chec
 | # | Pergunta | Por que importa |
 |---|---|---|
 | N9 | O que define **“produção grande”** para exigir sinal de 50%? Uma quantidade (por exemplo, a partir da faixa 2), um valor mínimo em R$, ou **todo** pedido que vai para a fábrica? | Sem isso o sistema não sabe quando cobra o sinal. |
-| N10 | A última faixa começa em **15.001** ou em **16.000**? (A resposta deixa um vão entre 15.001 e 15.999.) | Evita preço indefinido nessa quantidade. |
+| N10 | ✅ Respondida na rodada 3: a última faixa começa em **16.000**, mantendo o preço da faixa “até 15 mil” até 15.999. | Ver rodada 3. |
 | N11 | **Quanto do estoque** produzido vai para a loja? Quem decide, para não vender o que já está reservado a um pedido? | Define a quantidade publicada e a reserva. |
 | N12 | Na loja, o preço de **1 unidade** é o da faixa “até 300”? As demais faixas valem também para compras grandes na loja (limitadas ao estoque)? | Define o preço do carrinho. |
 | N13 | A loja tem **quantidade mínima** por pedido? | Regra do checkout. |
 | N14 | Na **devolução de 7 dias**, quem paga o frete? E como o sistema fica sabendo a **data de recebimento** (FOB, cliente retira): confirmação do cliente, comprovante de coleta? | A contagem do prazo depende dessa data. |
 | N15 | Há **comissão de vendedor**? Em que percentual? | Comissão sai do 1,5; afeta o resultado estimado. |
+
+
+---
+
+# Rodada 3 — respostas finais (27/11/2026)
+
+| Tema | Resposta | Efeito |
+|---|---|---|
+| Faixas de preço | Mantém o **preço de 15 mil** até 15.999; **5 preços** por item; última faixa a partir de **16.000** (N10). Obs.: a resposta anterior dizia 15.001; **vale a mais recente**. | Faixas: 1–300 · 301–2.000 · 2.001–5.000 · 5.001–15.999 · a partir de 16.000. |
+| Encomenda × loja | **Encomenda usa o sinal de 50%**. A **loja só usa estoque físico produzido**; com estoque zerado, **só por encomenda**. | Sem “sob encomenda” na loja; o produto sem estoque aparece indisponível com chamada para falar com o vendedor. |
+| N9 — sinal | **Sinal de 50% para todo pedido que exige produção, feito pelo vendedor.** Loja on-line **só à vista (Pix) ou cartão**. | Regra de liberação sem limite de “produção grande”. |
+| N11 — estoque da loja | **Pedido reservado tem prioridade**; a loja só recebe estoque **depois que os pedidos abertos estiverem zerados**. | `loja = max(0, físico − pendente em pedidos)` (interpretação, **⚠ confirmar** a fórmula). |
+| N12/N13 | Loja vende **até 300 peças**; **acima, consultar vendedor**. | Preço da loja = faixa 1; limite de 300 por pedido. Pedido mínimo **não informado**. |
+| N14 — devolução | **O cliente paga o frete** e o reembolso ocorre **só quando a mercadoria dá entrada com a nota de devolução** (interpretação, **⚠ confirmar**). | `store_returns` com etapas: solicitada → recebida (NF de devolução) → reembolsada. |
+| N15 — comissão | **Existe.** Campo de vendedor (rastro) e **cadastro de comissões com 4 campos progressivos por meta batida**, no admin. | Cadastro na Etapa 1; cálculo na Etapa 3. |
+| Infraestrutura | **Supabase já ligado ao GitHub; Vercel já logado.** | Ver `05` e a conversa: migrações em `supabase/migrations`. |
+
+## Dúvidas que restam (nenhuma bloqueia a fatia 1.1)
+
+| # | Pergunta |
+|---|---|
+| R1 | **Comissão:** a meta é mensal por vendedor? A comissão incide sobre o **valor do pedido** ou só sobre o **recebido**? Quais os percentuais das 4 faixas? |
+| R2 | **Data de recebimento** (para os 7 dias da loja): vale a **confirmação do cliente**, o **rastreio da transportadora** ou a **data da coleta**? |
+| R3 | **Pedido mínimo** na loja: 1 unidade? |
+| R4 | Confirmar a fórmula do estoque da loja (acima) e o que acontece com o **estoque de itens que não têm pedidos** (vai 100% para a loja?). |
+| R5 | Confirmar a leitura de N14: reembolso só após a **entrada da nota de devolução**? |

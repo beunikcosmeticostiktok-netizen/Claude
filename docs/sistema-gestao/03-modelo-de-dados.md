@@ -60,7 +60,7 @@ erDiagram
 | `items` | `type` (produto_acabado, materia_prima, componente, embalagem_auxiliar, servico), `sku` **único**, categoria, descrição, unidade, dimensões, peso, capacidade, material, cor/acabamento, mín./múltiplo de venda, prazo estimado, ativo |
 | `item_variants` | `item_id`, cor, acabamento, SKU da variante |
 | `uom_conversions` | `item_id`, de, para, fator |
-| `price_tier_defs` | faixas do sistema: `ordem`, `qty_min`, `qty_max` (5 faixas: até 300 / até 2.000 / até 5.000 / até 15.000 / a partir de 16.000 — ⚠ confirmar limites) |
+| `price_tier_defs` | faixas do sistema: `ordem`, `qty_min`, `qty_max` (5 faixas: 1–300 / 301–2.000 / 2.001–5.000 / 5.001–15.999 (preço da faixa “até 15 mil”) / a partir de 16.000; sem vãos nem sobreposição, validado por restrição) |
 | `price_tiers` | `item_id`, `tier_id`, preço, vigência — **um preço por faixa e por item** |
 | `bom_lines` | `item_id` (acabado), `component_id`, quantidade, perda % |
 | `routings` / `routing_steps` | roteiro por item: etapas ordenadas (injeção/sopro, rebarbação, montagem…) |
@@ -125,7 +125,10 @@ erDiagram
 `shipments` (pedido, status, transportadora/responsável, previsão, data efetiva, rastreio) · `shipment_items` (item do pedido, quantidade, volumes, peso) · documentos via `attachments`.
 
 ### Loja
-`store_products` (item, publicado, preço de loja, mínimo/múltiplo, **quantidade disponível na loja**) · `carts`, `cart_items` · `store_payments` (provedor = InfinitePay, `order_nsu`, `external_id`, status, bruto, taxa, **confirmado por consulta à API**) — só preenchida com provedor real · `store_returns` (pedido, motivo, solicitado em, **prazo de 7 dias**, status, reembolso).
+`store_products` (item, publicado, preço de loja = faixa 1, **`max_qty_per_order` = 300**, mínimo/múltiplo; **quantidade na loja é calculada**: saldo físico − pendências de pedidos abertos) · `carts`, `cart_items` · `store_payments` (provedor = InfinitePay, `order_nsu`, `external_id`, status, bruto, taxa, **confirmado por consulta à API**) — só preenchida com provedor real · `store_returns` (pedido, motivo, solicitado em, **prazo de 7 dias**, status, reembolso).
+
+### Vendedores e comissões
+`orders.seller_id` / `quotes.owner_id` (rastro do vendedor) · `commission_plans` (nome, período) · `commission_tiers` (**4 faixas progressivas**: % da meta atingida mínima → % de comissão) · `commission_targets` (vendedor, período, meta) · `commission_entries` (cálculo por pedido/recebimento, **Etapa 3**).
 
 ### Transversais
 `audit_log` (ator, ação, entidade, antes/depois, data, IP) · `notifications` (destinatário, evento, lida) · `integration_logs` (integração, direção, status, payload resumido) · `idempotency_keys` (chave, escopo, resultado).

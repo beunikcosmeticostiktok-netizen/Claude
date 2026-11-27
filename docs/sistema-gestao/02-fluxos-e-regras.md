@@ -62,7 +62,7 @@ preparacao    = (horas_setup × (custo_hora_maquina + custo_hora_MO)) ÷ quantid
 
 - **Numeração** própria; cada alteração relevante cria **nova versão** (`v1, v2…`). A versão *Enviada* é **imutável**.
 - **Aprovação interna** obrigatória quando: **markup resultante < 1,5** (o desconto é livre até esse ponto) ou prazo/condição fora do padrão **[a definir]**. Aprovador: Gestor (ou Administrador).
-- **Preço por faixa de quantidade (decidido):** cada item tem **preço separado por faixa** — até 300 · até 2.000 · até 5.000 · até 15.000 · a partir de 16.000 (**⚠ corrigir o vão 15.001–15.999**, ver `07` N10). As faixas são parâmetros do sistema; o preço de cada faixa é cadastrado **por item**. O vendedor pode sobrescrever com justificativa, respeitando o markup mínimo.
+- **Preço por faixa de quantidade (decidido):** cada item tem **preço separado por faixa** — **1 a 300 · 301 a 2.000 · 2.001 a 5.000 · 5.001 a 15.999 (vale o preço da faixa “até 15 mil”) · a partir de 16.000** peças. As faixas são parâmetros do sistema; o preço de cada faixa é cadastrado **por item**. O vendedor pode sobrescrever com justificativa, respeitando o markup mínimo.
 - **Validade**: ao vencer, estado *Expirado* (job diário); reabrir cria nova versão.
 - **PDF** gerado pelo servidor com a identidade visual, a partir do retrato da versão (não do dado “vivo”).
 - **Portal**: o cliente vê a versão enviada; ao **Aprovar**, o sistema grava usuário, versão, data/hora e IP. **Solicitar alteração** reabre negociação e gera nova versão quando o comercial responder.
@@ -94,7 +94,7 @@ preparacao    = (horas_setup × (custo_hora_maquina + custo_hora_MO)) ÷ quantid
 | Produção | Não liberado · Liberado · Programado · Em produção · Concluído · Parcial |
 | Logístico | Aguardando · Disponível p/ separação · Separado · Pronto p/ coleta · Coleta agendada · Coletado parcial/total |
 
-**Liberação para produção**: conjunto de **regras configuráveis**: aprovação do orçamento, aprovação técnica/amostra, material/máquina/molde disponíveis e **sinal de 50% recebido e validado pelo Financeiro — decidido apenas para produção grande** (limite que define “grande”: **⚠ em aberto**, `07` N9). **Pronta entrega e loja: pagamento integral** antes de separar/coletar. Exceção só por Gestor, com justificativa registrada.
+**Liberação para produção**: conjunto de **regras configuráveis**: aprovação do orçamento, aprovação técnica/amostra, material/máquina/molde disponíveis e **sinal de 50% recebido e validado pelo Financeiro — decidido para todo pedido que exige produção (encomenda), feito pelo vendedor**. **Loja on-line: somente à vista (Pix) ou cartão**, com pagamento confirmado antes de separar/coletar. Exceção só por Gestor, com justificativa registrada.
 
 ## 8. Produção (E2)
 
@@ -139,7 +139,7 @@ Entidades separadas: **orçamento ≠ pedido ≠ título financeiro ≠ moviment
 - Coletas **parciais**: o pedido mostra coletado × saldo.
 - **Coletado ≠ entregue**: a entrega ao cliente só é marcada com comprovante ou confirmação **[a definir]**.
 - **Decidido:** a coleta **só é liberada com a nota fiscal anexada** (número e chave) — vale para pedidos de orçamento e da loja. No FOB, o **cliente indica a transportadora/responsável** no pedido antes do agendamento.
-- **Loja, arrependimento (7 dias):** o pedido da loja registra a **data de recebimento** e abre uma **solicitação de devolução** dentro do prazo; o reembolso é um estorno financeiro registrado, nunca exclusão. **⚠ Validar com jurídico/contador** a contagem do prazo.
+- **Loja, arrependimento (7 dias):** o pedido da loja registra a **data de recebimento** e abre uma **solicitação de devolução** dentro do prazo. **Decidido:** o **cliente paga o frete da devolução**; o **reembolso só é feito quando a mercadoria devolvida dá entrada com a nota de devolução registrada**. O reembolso é um estorno financeiro, nunca exclusão. **⚠ Validar com jurídico/contador** a contagem do prazo e a regra do reembolso.
 
 ## 13. Portal do cliente — linha do tempo
 
@@ -162,10 +162,11 @@ Entidades separadas: **orçamento ≠ pedido ≠ título financeiro ≠ moviment
 Regras já previsíveis:
 - Venda da loja vira **pedido do mesmo sistema** (canal = *loja*), com a mesma separação de status; não existe “estoque paralelo”.
 - Só vende o que está **publicado**, com preço de loja, **múltiplo/quantidade mínima** e **disponibilidade** (estoque disponível ou "sob encomenda" [a definir]).
-- Reserva de estoque ao confirmar o pedido; liberação se não houver pagamento em **[prazo]**.
+- **Prioridade de estoque (decidido):** quantidade reservada/pendente em **pedidos de encomenda tem prioridade**. A entrada de produção abastece primeiro os pedidos abertos; **a loja só enxerga o que sobra**: `disponível na loja = max(0, estoque físico produzido − quantidade ainda pendente em pedidos abertos)`. Exemplo: 10 mil pendentes em pedidos e entram 5 mil → tudo vai para os pedidos, loja = 0.
+- Reserva de estoque da loja ao confirmar o pedido; liberação se não houver pagamento em **[prazo]**.
 - Cliente cria conta (mesmo login do portal) e acompanha o pedido.
-- **Decidido:** a loja atende **empresas e consumidor final** e **vende apenas estoque já produzido** (não aceita encomenda: encomenda segue pelo orçamento); **pagamento integral** na compra; entrega por **frete FOB indicado pelo cliente** ou retirada; **nota fiscal emitida manualmente** e anexada ao pedido antes da coleta; **arrependimento em 7 dias, só na loja on-line**.
-- **Em aberto:** quanto do estoque fica disponível na loja (`07` N11), se as faixas de preço valem na loja (N12), pedido mínimo (N13) e quem paga o frete da devolução e como registrar a data de recebimento (N14).
+- **Decidido:** a loja atende **empresas e consumidor final**, vende **apenas estoque físico já produzido** e **até 300 peças por pedido** (acima disso, o site manda **consultar o vendedor**); preço da loja = **faixa 1 (1 a 300)**. **Estoque zerado = só por encomenda**, que segue pelo orçamento com sinal de 50%. Pagamento **à vista (Pix) ou cartão**; entrega por **frete FOB com transporte indicado pelo cliente** ou retirada; **nota fiscal emitida manualmente** e anexada antes da coleta; **arrependimento em 7 dias, só na loja on-line**.
+- **Em aberto:** pedido mínimo na loja e como registrar a data de recebimento para contar os 7 dias (`07`, rodada 3).
 
 ## 15. Notificações
 
@@ -178,3 +179,10 @@ Regras já previsíveis:
 - Cancelar nunca apaga: gera registro de cancelamento com motivo; efeitos (reservas, títulos) são revertidos por lançamentos.
 - Cadastros usados são **inativados**, não excluídos.
 - Ações que criam documentos (pedido, OP, título, recebimento) usam **chave de idempotência** e restrições únicas.
+
+## 17. Vendedores e comissões
+
+- Todo orçamento e pedido registra o **vendedor responsável** (rastro de quem vendeu), inclusive vendas originadas pela landing ou pela loja quando um vendedor atender.
+- No administrador existe o **cadastro de comissões em 4 faixas progressivas**, de acordo com a **meta batida** (ex.: quanto mais da meta o vendedor atinge, maior o percentual). Metas são cadastradas por vendedor e período.
+- **⚠ Em aberto** (`07`, rodada 3): período da meta, base de cálculo (faturamento do pedido ou valor **recebido**), percentuais, e se a comissão sai do 1,5 de markup (afeta o “resultado estimado após imposto”).
+- Cálculo e relatório de comissões dependem do financeiro (valores recebidos): **cadastro na Etapa 1, cálculo na Etapa 3**.
