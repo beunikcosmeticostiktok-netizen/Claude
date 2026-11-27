@@ -1,0 +1,11 @@
+# Projeto Supabase da Century Shalom.
+# Este arquivo faz a integração do Supabase com o GitHub reconhecer a pasta "supabase"
+# e aplicar automaticamente os arquivos de supabase/migrations (em ordem de nome).
+project_id = "centuryshalom"
+
+[db]
+# Versão principal do PostgreSQL do projeto (só afeta desenvolvimento local).
+major_version = 17
+
+[db.migrations]
+enabled = true
