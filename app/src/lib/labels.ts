@@ -44,7 +44,7 @@ export const DB_ERRORS: Record<string, string> = {
   invalid_qty: 'Quantidade inválida.', invalid_kind: 'Tipo de movimento inválido.',
   already_reversed: 'Este movimento já foi estornado.', cannot_reverse_reversal: 'Um estorno não pode ser estornado.',
   exceeds_order: 'A reserva ultrapassa a quantidade do pedido.', not_active: 'Reserva já encerrada.',
-  po_locked: 'Pedido de compra já aprovado: as linhas não podem mais mudar.', not_draft: 'O pedido de compra não está em rascunho.',
+  po_locked: 'Pedido de compra já aprovado: as linhas não podem mais mudar.', not_draft: 'Este registro não está mais em rascunho.',
   not_approved: 'O pedido precisa ser aprovado antes de enviar.', has_receipts: 'Já houve recebimento: não é possível cancelar.',
   not_cancellable: 'Este pedido de compra não pode mais ser cancelado.', not_receivable: 'Este pedido de compra não está liberado para recebimento.',
   over_receipt: 'A quantidade recebida passa do que foi comprado.', key_required: 'Atualize a página e tente de novo.',
@@ -63,6 +63,14 @@ export const DB_ERRORS: Record<string, string> = {
   movement_already_matched: 'Este lançamento já foi conciliado com outra linha.', proof_closed: 'Este comprovante já foi analisado.',
   receipt_not_found: 'Recebimento não encontrado.', invalid_regime: 'Escolha caixa ou competência.', title_not_found: 'Título não encontrado.',
   order_not_found: 'Pedido não encontrado.', proof_not_found: 'Comprovante não encontrado.',
+  briefing_required: 'Preencha o briefing antes de avançar.', not_feasible: 'A viabilidade precisa estar registrada como viável.',
+  wrong_stage: 'Esta ação não vale na etapa atual do projeto.', version_not_approved: 'O cliente ainda não aprovou uma versão técnica.',
+  sample_required: 'Crie ao menos uma amostra da versão aprovada.', sample_not_sent: 'Envie a amostra ao cliente antes de avançar.',
+  sample_not_approved: 'A amostra precisa estar aprovada para liberar o projeto.', requirements_required: 'Escreva os requisitos da versão.',
+  not_sendable: 'Esta amostra não pode ser enviada agora.', not_open: 'Este item não está mais aguardando resposta.',
+  project_not_released: 'O projeto exclusivo ainda não está liberado: a produção só começa depois da aprovação técnica e da amostra.',
+  project_not_found: 'Projeto não encontrado.', version_not_found: 'Versão não encontrada.',
+  project_files_url_check: 'Informe um link que comece com http:// ou https://.', customer_not_found: 'Cliente não encontrado.',
   suppliers_tax_id_uk: 'Já existe um fornecedor com este CNPJ/CPF.', suppliers_tax_id_valid: 'CNPJ/CPF inválido.',
 };
 export const dbErrorKey = (m?: string | null) => Object.keys(DB_ERRORS).find((k) => m?.includes(k)) ?? 'falha';
@@ -70,3 +78,13 @@ export const dbErrorText = (k?: string) => (k && DB_ERRORS[k]) || (k ? 'Não foi
 
 export const PRODUCTION_STATUS: Record<string, string> = { planejada: 'Planejada', liberada: 'Liberada', em_producao: 'Em produção', pausada: 'Pausada', concluida: 'Concluída', cancelada: 'Cancelada' };
 export const SHIPMENT_STATUS: Record<string, string> = { separado: 'Separado', pronto_coleta: 'Pronto para coleta', coleta_agendada: 'Coleta agendada', coletado: 'Coletado', cancelado: 'Cancelado' };
+
+export const PROJECT_STAGES: [string, string][] = [
+  ['briefing', 'Briefing'], ['viabilidade', 'Viabilidade'], ['proposta', 'Proposta'], ['desenvolvimento', 'Desenvolvimento'],
+  ['amostra', 'Amostra'], ['aprovacao_amostra', 'Aprovação da amostra'], ['liberado', 'Liberado'],
+];
+export const PROJECT_STAGE_LABEL: Record<string, string> = { ...Object.fromEntries(PROJECT_STAGES), recusado: 'Recusado', cancelado: 'Cancelado' };
+export const PROJECT_NEXT: Record<string, string[]> = {
+  briefing: ['viabilidade'], viabilidade: ['proposta', 'recusado'], proposta: ['desenvolvimento'], desenvolvimento: ['amostra'],
+  amostra: ['aprovacao_amostra'], aprovacao_amostra: ['liberado', 'desenvolvimento'],
+};

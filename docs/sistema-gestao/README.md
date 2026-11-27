@@ -80,3 +80,11 @@ conta a pagar por recebimento de compra; parcelamento), pagamentos parciais com 
 Banco: 93 testes.
 
 **Ainda não construído:** projetos exclusivos, loja, comissões a pagar, e-mail/WhatsApp automáticos, parâmetros de custo salvos.
+
+**Também pronto (projetos exclusivos):** briefing → viabilidade (com parecer) → proposta (versão técnica aprovada pelo cliente no portal) →
+desenvolvimento → amostra (reprovação volta ao desenvolvimento) → aprovação da amostra → liberado. Produto exclusivo no catálogo (invisível para
+outros clientes e para a loja). A produção só é liberada com o projeto liberado; o pedido e a ordem de produção carregam a versão técnica aprovada;
+mudar a versão revoga a liberação. Custo interno do projeto não aparece ao cliente nem à produção. Arquivos por enquanto são links.
+Banco: 105 testes.
+
+**Ainda não construído:** loja, comissões a pagar, e-mail/WhatsApp automáticos, upload privado de arquivos, parâmetros de custo salvos.

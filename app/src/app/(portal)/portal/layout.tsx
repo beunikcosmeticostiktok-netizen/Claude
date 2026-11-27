@@ -13,7 +13,7 @@ export default async function PortalLayout({ children }: { children: React.React
     <>
       <header className="ptop"><div className="in">
         <img src="/logo.png" alt="Century Shalom" />
-        <Nav variant="side" items={[{ href: '/portal', label: 'Início' }, { href: '/portal/orcamentos', label: 'Orçamentos' }, { href: '/portal/pedidos', label: 'Pedidos' }]} />
+        <Nav variant="side" items={[{ href: '/portal', label: 'Início' }, { href: '/portal/orcamentos', label: 'Orçamentos' }, { href: '/portal/projetos', label: 'Projetos' }, { href: '/portal/pedidos', label: 'Pedidos' }]} />
         <form action={signOut} className="inline"><span className="muted small">{profile.full_name || profile.email}</span><button className="btn line sm" type="submit">Sair</button></form>
       </div></header>
       <main className="pmain">{children}</main>

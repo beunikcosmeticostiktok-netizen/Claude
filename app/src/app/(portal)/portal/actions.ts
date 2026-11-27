@@ -47,3 +47,27 @@ export async function submitProof(fd: FormData) {
   revalidatePath(`/portal/pedidos/${o}`);
   redirect(`/portal/pedidos/${o}?ok=comprovante`);
 }
+
+export async function approveProjectVersion(fd: FormData) {
+  const { supabase } = await getSession();
+  const p = str(fd, 'project_id');
+  const ip = ((await headers()).get('x-forwarded-for') ?? '').split(',')[0].trim() || null;
+  const { error } = await supabase.rpc('portal_approve_project_version', { p_version: str(fd, 'version_id'), p_ip: ip });
+  revalidatePath(`/portal/projetos/${p}`);
+  redirect(`/portal/projetos/${p}?` + (error ? 'erro=' + dbErrorKey(error.message) : 'ok=aprovada'));
+}
+export async function requestProjectChange(fd: FormData) {
+  const { supabase } = await getSession();
+  const p = str(fd, 'project_id'); const msg = str(fd, 'message').trim();
+  if (!msg) redirect(`/portal/projetos/${p}?erro=note_required`);
+  const { error } = await supabase.rpc('portal_request_project_change', { p_version: str(fd, 'version_id'), p_message: msg });
+  revalidatePath(`/portal/projetos/${p}`);
+  redirect(`/portal/projetos/${p}?` + (error ? 'erro=' + dbErrorKey(error.message) : 'ok=alteracao'));
+}
+export async function decideSample(fd: FormData) {
+  const { supabase } = await getSession();
+  const p = str(fd, 'project_id'); const approve = str(fd, 'approve') === '1';
+  const { error } = await supabase.rpc('portal_decide_sample', { p_sample: str(fd, 'sample_id'), p_approve: approve, p_note: str(fd, 'note').trim() || null });
+  revalidatePath(`/portal/projetos/${p}`);
+  redirect(`/portal/projetos/${p}?` + (error ? 'erro=' + dbErrorKey(error.message) : 'ok=' + (approve ? 'amostra_aprovada' : 'amostra_reprovada')));
+}
