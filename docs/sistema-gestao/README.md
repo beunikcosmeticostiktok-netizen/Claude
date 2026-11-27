@@ -66,3 +66,10 @@ Banco: `supabase/migrations` (5 migrações, 50 testes). Aplicação: `app/` (19
 
 **Pendente:** parâmetros de custo salvos no sistema (hoje a calculadora não grava), projetos exclusivos,
 produção/apontamento, expedição, financeiro, loja, e-mail/WhatsApp automáticos. Cada módulo novo começa pelo banco e seus testes.
+
+**Também pronto (Etapa 2, parte 2):** máquinas e moldes, ordens de produção (parciais, várias por pedido, só liberadas com o pedido liberado),
+apontamento com consumo de matéria-prima, liberação de qualidade (acabado só entra no estoque depois), separação e coleta parcial
+(nota fiscal obrigatória, baixa de estoque na coleta, regra de quitação configurável) e coletas no portal do cliente. Banco: 78 testes.
+
+**Ainda não construído:** projetos exclusivos (aprovação técnica/amostra), financeiro (títulos, caixa, comissões a pagar), loja,
+e-mail/WhatsApp automáticos, parâmetros de custo salvos no sistema.

@@ -49,7 +49,17 @@ export const DB_ERRORS: Record<string, string> = {
   not_cancellable: 'Este pedido de compra não pode mais ser cancelado.', not_receivable: 'Este pedido de compra não está liberado para recebimento.',
   over_receipt: 'A quantidade recebida passa do que foi comprado.', key_required: 'Atualize a página e tente de novo.',
   supplier_not_found: 'Fornecedor não encontrado.', line_not_found: 'Linha não encontrada.',
+  item_not_producible: 'Este item não é um produto do catálogo e não pode ir para produção.',
+  mold_unavailable: 'Molde indisponível (em manutenção ou inativo).', mold_machine_incompatible: 'Este molde não é compatível com a máquina escolhida.',
+  order_not_released: 'O pedido ainda não foi liberado para produção (sinal e demais condições).', not_planned: 'A ordem não está mais planejada.',
+  po_not_active: 'A ordem de produção não está ativa para esta ação.', exceeds_produced: 'A quantidade inspecionada passa do que foi produzido (descontado o refugo).',
+  short_note_required: 'A ordem foi produzida a menos do planejado: escreva o motivo para concluir.', invalid_transition: 'Esta mudança de situação não é permitida agora.',
+  payment_required: 'Este pedido exige pagamento integral confirmado antes da separação/coleta.', schedule_required: 'Informe a data e hora da coleta.',
+  shipment_not_found: 'Separação não encontrada.', item_not_found: 'Item do pedido não encontrado.', invalid_action: 'Ação inválida.',
   suppliers_tax_id_uk: 'Já existe um fornecedor com este CNPJ/CPF.', suppliers_tax_id_valid: 'CNPJ/CPF inválido.',
 };
 export const dbErrorKey = (m?: string | null) => Object.keys(DB_ERRORS).find((k) => m?.includes(k)) ?? 'falha';
 export const dbErrorText = (k?: string) => (k && DB_ERRORS[k]) || (k ? 'Não foi possível concluir a ação.' : '');
+
+export const PRODUCTION_STATUS: Record<string, string> = { planejada: 'Planejada', liberada: 'Liberada', em_producao: 'Em produção', pausada: 'Pausada', concluida: 'Concluída', cancelada: 'Cancelada' };
+export const SHIPMENT_STATUS: Record<string, string> = { separado: 'Separado', pronto_coleta: 'Pronto para coleta', coleta_agendada: 'Coleta agendada', coletado: 'Coletado', cancelado: 'Cancelado' };

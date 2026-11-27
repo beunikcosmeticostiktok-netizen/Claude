@@ -15,6 +15,9 @@ export default async function PortalPedido({ params, searchParams }: { params: P
   const { data: o } = await supabase.from('portal_orders').select('*').eq('id', id).maybeSingle();
   if (!o) notFound();
   const { data: items } = await supabase.from('portal_order_items').select('*').eq('order_id', id).order('position');
+  const { data: ships } = await supabase.from('portal_shipments').select('id, number, status, scheduled_at, collected_at, volumes, tracking').eq('order_id', id).order('collected_at', { ascending: false, nullsFirst: true });
+  const { data: shipItems } = (ships ?? []).length ? await supabase.from('portal_shipment_items').select('shipment_id, description, qty').in('shipment_id', (ships ?? []).map((x) => x.id)) : { data: [] };
+  const SHL: Record<string, string> = { separado: 'Separado', pronto_coleta: 'Pronto para coleta', coleta_agendada: 'Coleta agendada', coletado: 'Coletado' };
   const access = portal.find((p) => p.customer_id === o.customer_id)?.access;
   const steps = buildTimeline(o);
   const cancelled = o.status_commercial === 'cancelado';
@@ -56,6 +59,20 @@ export default async function PortalPedido({ params, searchParams }: { params: P
           )}
         </div>
       </div>
+
+      {(ships ?? []).length > 0 && (
+        <div className="card" style={{ marginTop: 16 }}>
+          <h2>Coletas</h2>
+          {(ships ?? []).map((x) => (
+            <p key={x.id} className="small" style={{ margin: '10px 0' }}>
+              <b>{x.number}</b> <span className={`badge ${x.status === 'coletado' ? 'on' : 'acc'}`}>{SHL[x.status]}</span>
+              {x.collected_at ? ` · coletado em ${dataBR(x.collected_at)}` : x.scheduled_at ? ` · agendada para ${dataBR(x.scheduled_at)}` : ''}
+              {x.tracking ? ` · rastreio ${x.tracking}` : ''}
+              <span className="muted"> — {(shipItems ?? []).filter((i) => i.shipment_id === x.id).map((i) => `${i.qty}× ${i.description}`).join(', ')}</span>
+            </p>))}
+          <p className="muted small">“Coletado” indica que a carga saiu da fábrica com a transportadora indicada.</p>
+        </div>
+      )}
 
       <div className="card scroll" style={{ marginTop: 16 }}>
         <h2>Itens</h2>
