@@ -13,6 +13,7 @@
 | `04-permissoes-e-seguranca.md` | Matriz de permissões, isolamento de clientes, auditoria |
 | `05-arquitetura-e-plano.md` | Stack, serviços, ambientes, integrações, etapas e critérios de aceite |
 | `06-perguntas-pendentes.md` | Perguntas indispensáveis, priorizadas por etapa |
+| `07-decisoes-registradas.md` | **Respostas da empresa**, efeito no sistema e novas dúvidas |
 
 ## Resumo da proposta
 
@@ -46,6 +47,8 @@ Aplicação responsiva · banco real e relacional · autenticação e permissõe
 **Loja (e-commerce):** proposta em três níveis — ver `02` §Loja. O catálogo e o carrinho podem vir logo após a Etapa 1; pagamento automático, frete e nota fiscal dependem de provedores externos e de validação contábil.
 
 **Fora do escopo declarado:** multiempresa, integração com máquinas (IoT/MES), aplicativo nativo, BI avançado, emissão fiscal automática na v1.
+
+> **Atualização 27/11/2026:** a empresa respondeu parte das perguntas (markup mínimo 1,5; Simples Nacional; sinal de 50%; leads para o administrador; loja para empresas e consumidor com preço especial acima de 300 peças; InfinitePay; frete FOB/retirada; notas emitidas manualmente). Ver `07-decisoes-registradas.md`.
 
 ## O que não vou assumir
 

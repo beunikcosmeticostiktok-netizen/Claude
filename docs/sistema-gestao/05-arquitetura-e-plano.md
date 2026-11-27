@@ -63,9 +63,10 @@ Migrações de banco versionadas no repositório (SQL), aplicadas em demonstraç
 | Item | Depende de | Observação |
 |---|---|---|
 | Orçamento, pedido, produção, estoque, compras, financeiro gerencial | Só do sistema | Etapas 1–3 |
-| Pix/cartão/boleto automáticos | Gateway (contrato, credenciais, taxas) | E4 / L2 |
-| Frete em tempo real, etiquetas | Provedor de frete | L3 |
-| Emissão de NF-e | Emissor fiscal + contador (regime, CFOP, NCM, certificado) | **Nada de fiscal sem validação contábil** |
+| Pix/cartão automáticos | **InfinitePay** (checkout integrado ativado, credenciais) — confirmação por consulta à API, não só por webhook | E4 / L2 |
+| Boleto | Não definido (InfinitePay pode não cobrir) | Decisão futura |
+| Frete em tempo real, etiquetas | Provedor de frete (opcional; v1 usa FOB/retirada) | L3 |
+| Emissão de NF-e | v1: **manual** (administrador emite; sistema guarda número, chave e anexos). Integrada: emissor fiscal + contador (CFOP, NCM, certificado) | **Nada de fiscal sem validação contábil** |
 | E-mail transacional | Serviço de envio + domínio verificado (SPF/DKIM) | Log de envio obrigatório |
 | WhatsApp automático | API oficial (Business) + modelos aprovados | Custo e aprovação da Meta |
 | Conciliação automática | Open Finance/arquivo OFX | Começa manual |
@@ -121,5 +122,5 @@ Cobrança, fiscal, e-mail/WhatsApp, indicadores avançados, integração com o G
 
 1. Respostas às perguntas **bloqueantes** (`06`).
 2. Contas: **Supabase** (projetos demonstração e produção), **Vercel** (ou onde publicar) — criadas por vocês; eu não crio contas nem guardo senhas.
-3. Primeiros **parâmetros de custo** reais (ou aceitação de valores fictícios rotulados na demonstração).
+3. Primeiros **parâmetros de custo** reais (ou aceitação de valores fictícios rotulados na demonstração). **Já definidos:** markup mínimo 1,5, Simples Nacional, sinal de 50%.
 4. Lista inicial de **produtos de linha** (pelo menos 5–10) com medidas, materiais e preços.

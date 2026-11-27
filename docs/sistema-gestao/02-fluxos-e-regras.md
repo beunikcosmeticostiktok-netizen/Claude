@@ -8,7 +8,7 @@ Convenção: valores entre **[colchetes]** são **parâmetros configuráveis** a
 2. Proteções: campo isca (honeypot), verificação anti-robô (Cloudflare Turnstile ou similar), limite de envios por IP/telefone, validação de campos.
 3. O lead recebe `tipo_interesse`: **produto existente** ou **projeto exclusivo**.
 4. **Deduplicação**: chave por CNPJ/CPF quando informado; senão telefone normalizado e e-mail. Se houver cadastro/oportunidade aberta, o lead é **anexado** à existente e o responsável é avisado; não cria registro paralelo.
-5. Cria (ou vincula) empresa e contato, abre **oportunidade** na etapa *Novo contato* e **notifica o responsável** (regra de distribuição **[a definir]**).
+5. Cria (ou vincula) empresa e contato, abre **oportunidade** na etapa *Novo contato* e **notifica o responsável**. **Decidido:** por enquanto o responsável é o administrador (Marcelo); rodízio/segmento fica como configuração futura.
 
 ## 2. Funil comercial (configurável)
 
@@ -48,7 +48,7 @@ mao_de_obra   = (tempo_ciclo / cavidades) × operadores × custo_hora_MO ÷ efic
 preparacao    = (horas_setup × (custo_hora_maquina + custo_hora_MO)) ÷ quantidade_do_lote
 ```
 
-**Preço**: o sistema deve suportar **markup** ou **margem sobre preço** (escolha **[a definir]**), somando impostos e comissão. O preço sugerido é **proposta**: o vendedor ajusta; fora dos limites exige aprovação (§4).
+**Preço (decidido):** **markup mínimo = 1,5** sobre o custo (`preço ≥ custo × 1,5`). O **desconto é livre até o markup resultante chegar a 1,5**; abaixo disso, exige aprovação do Gestor (§4). Regime **Simples Nacional**: imposto é percentual sobre a **receita** (alíquota efetiva informada pelo contador). **⚠ Em aberto:** se o 1,5 incide sobre custo direto ou custo completo, e se o imposto está dentro ou fora do 1,5 (ver `07`, N1 e N2). O preço sugerido é **proposta**: o vendedor ajusta.
 
 ### Regras
 - Custos e margens são **somente internos**; o PDF e o portal nunca os exibem.
@@ -61,7 +61,7 @@ preparacao    = (horas_setup × (custo_hora_maquina + custo_hora_MO)) ÷ quantid
 `Rascunho → Aguardando aprovação interna → Enviado → Em negociação → Aprovado | Recusado | Expirado`
 
 - **Numeração** própria; cada alteração relevante cria **nova versão** (`v1, v2…`). A versão *Enviada* é **imutável**.
-- **Aprovação interna** obrigatória quando: desconto > **[limite]**, margem < **[mínimo]**, prazo/condição fora do padrão **[a definir]**. Aprovador: Gestor (ou Administrador).
+- **Aprovação interna** obrigatória quando: **markup resultante < 1,5** (o desconto é livre até esse ponto) ou prazo/condição fora do padrão **[a definir]**. Aprovador: Gestor (ou Administrador).
 - **Preço por faixa de quantidade** vindo do cadastro; o vendedor pode sobrescrever com justificativa.
 - **Validade**: ao vencer, estado *Expirado* (job diário); reabrir cria nova versão.
 - **PDF** gerado pelo servidor com a identidade visual, a partir do retrato da versão (não do dado “vivo”).
@@ -94,7 +94,7 @@ preparacao    = (horas_setup × (custo_hora_maquina + custo_hora_MO)) ÷ quantid
 | Produção | Não liberado · Liberado · Programado · Em produção · Concluído · Parcial |
 | Logístico | Aguardando · Disponível p/ separação · Separado · Pronto p/ coleta · Coleta agendada · Coletado parcial/total |
 
-**Liberação para produção**: conjunto de **regras configuráveis** (aprovação do orçamento, aprovação técnica/amostra, sinal recebido **[se exigido]**, material, máquina e molde disponíveis). O sistema mostra **quais condições faltam**; exceção só por Gestor, com justificativa registrada.
+**Liberação para produção**: conjunto de **regras configuráveis** (aprovação do orçamento, aprovação técnica/amostra, **sinal de 50% recebido e validado pelo Financeiro (decidido)**, material, máquina e molde disponíveis). **⚠ Em aberto:** se o sinal vale para a loja e para pronta entrega (`07`, N4 e N5). O sistema mostra **quais condições faltam**; exceção só por Gestor, com justificativa registrada.
 
 ## 8. Produção (E2)
 
@@ -154,15 +154,16 @@ Entidades separadas: **orçamento ≠ pedido ≠ título financeiro ≠ moviment
 | Nível | Entrega | Depende de |
 |---|---|---|
 | **L1 — Catálogo e pedido** | Vitrine, carrinho, checkout que gera **pedido**; pagamento por Pix/transferência **validado pelo Financeiro**; frete combinado ou tabela simples | Produtos de linha cadastrados com preço, múltiplos de venda e estoque |
-| **L2 — Pagamento automático** | Cartão/Pix com confirmação automática (webhook) | Contrato com gateway (ex.: Mercado Pago, Asaas, Pagar.me, Stripe), credenciais, taxas |
-| **L3 — Frete e fiscal** | Cotação de frete em tempo real, etiqueta, NF-e | Provedor de frete (ex.: Melhor Envio), emissor fiscal, validação contábil |
+| **L2 — Pagamento automático** | Pix/cartão com confirmação automática | **InfinitePay (decidido):** conta com checkout integrado ativado; o pedido só é baixado após consulta de confirmação à API (o webhook não é assinado) |
+| **L3 — Frete e fiscal** | Frete automático (opcional) e NF-e integrada | Na v1 **frete FOB ou retirada** (sem cálculo automático) e **nota emitida manualmente** pelo administrador, com número/chave/anexos no pedido; automação só se for desejada |
 
 Regras já previsíveis:
 - Venda da loja vira **pedido do mesmo sistema** (canal = *loja*), com a mesma separação de status; não existe “estoque paralelo”.
 - Só vende o que está **publicado**, com preço de loja, **múltiplo/quantidade mínima** e **disponibilidade** (estoque disponível ou "sob encomenda" [a definir]).
 - Reserva de estoque ao confirmar o pedido; liberação se não houver pagamento em **[prazo]**.
 - Cliente cria conta (mesmo login do portal) e acompanha o pedido.
-- **Perguntas bloqueantes**: loja é só para empresas (B2B) ou também consumidor final? Preço único ou por perfil/faixa? Entrega ou só retirada? Emissão de NF por pedido?
+- **Decidido:** a loja atende **empresas e consumidor final**; **acima de 300 peças há preço especial**; aceita **encomenda** (sem estoque, com prazo informado); entrega por **frete FOB ou retirada**; notas emitidas manualmente.
+- **Em aberto:** forma exata da faixa de 300 peças, sinal na loja, política de devolução para consumidor final e prazo de pagamento da reserva (`07`, N3–N8).
 
 ## 15. Notificações
 

@@ -1,5 +1,7 @@
 # 06 — Perguntas indispensáveis sobre a operação
 
+**Atualização 27/11/2026:** as perguntas marcadas com ✅ foram respondidas — ver `07-decisoes-registradas.md` (que também traz novas dúvidas N1–N8).
+
 Nenhuma resposta abaixo foi presumida no projeto. 🔴 = bloqueia o início da etapa indicada · 🟡 = precisa estar definida antes de a fatia correspondente · 🟢 = pode esperar.
 
 ## Estratégia e escopo
@@ -11,18 +13,18 @@ Nenhuma resposta abaixo foi presumida no projeto. 🔴 = bloqueia o início da e
 
 ## Comercial e CRM
 
-5. 🔴 **E1** — Quem recebe os leads novos? Distribuição por pessoa, rodízio ou por segmento (pets/cosméticos/tampas)?
+5. ✅ **E1** — Quem recebe os leads novos? Distribuição por pessoa, rodízio ou por segmento (pets/cosméticos/tampas)?
 6. 🔴 **E1** — Etapas do funil: as sete do briefing servem como estão? Quais motivos de perda usar?
 7. 🟡 Comercial vê **só suas** oportunidades ou todas?
 8. 🟡 Clientes pessoa física existem (CPF) ou só empresas (CNPJ)?
 
 ## Custos e preços (os mais importantes para a cotação)
 
-9. 🔴 **E1** — **Como a empresa calcula hoje** o preço de uma peça? (planilha, fórmula, markup, margem). Pode enviar um exemplo real **anonimizado**.
-10. 🔴 **E1** — Quais custos entram: matéria-prima (preço por kg: média, último compra ou fornecedor?), **hora-máquina** (por máquina ou média?), **mão de obra** (com ou sem encargos), **setup**, embalagem, terceirizados.
-11. 🔴 **E1** — **Despesas fixas**: quais são e **como rateá-las** (por hora-máquina, por peso produzido, percentual sobre faturamento)? Essa é decisão da gestão/contabilidade.
-12. 🔴 **E1** — **Impostos** sobre venda e comissão: regime tributário, percentuais, o que embutir no preço.
-13. 🔴 **E1** — **Markup ou margem sobre preço?** Margem mínima por categoria? Limite de desconto do vendedor sem aprovação?
+9. ✅ **E1** — **Como a empresa calcula hoje** o preço de uma peça? (planilha, fórmula, markup, margem). Pode enviar um exemplo real **anonimizado**.
+10. ✅ (parcial) **E1** — Quais custos entram: matéria-prima (preço por kg: média, último compra ou fornecedor?), **hora-máquina** (por máquina ou média?), **mão de obra** (com ou sem encargos), **setup**, embalagem, terceirizados.
+11. ✅ (parcial) **E1** — **Despesas fixas**: quais são e **como rateá-las** (por hora-máquina, por peso produzido, percentual sobre faturamento)? Essa é decisão da gestão/contabilidade.
+12. ✅ (parcial) **E1** — **Impostos** sobre venda e comissão: regime tributário, percentuais, o que embutir no preço.
+13. ✅ **E1** — **Markup ou margem sobre preço?** Margem mínima por categoria? Limite de desconto do vendedor sem aprovação?
 14. 🟡 Preço por faixa de quantidade: quais faixas? Valem para linha e projetos exclusivos?
 15. 🟡 Perda prevista de material: um percentual por produto, por processo ou geral?
 16. 🟡 Moldes de projeto exclusivo: cobrados do cliente (integral, parcelado, amortizado no preço)? Quem é o dono do molde?
@@ -31,7 +33,7 @@ Nenhuma resposta abaixo foi presumida no projeto. 🔴 = bloqueia o início da e
 ## Orçamentos e pedidos
 
 18. 🔴 **E1** — Validade padrão do orçamento? Condições de pagamento padrão? Prazo estimado vem de onde (cadastro do produto, programação)?
-19. 🔴 **E1** — Exigem **sinal/adiantamento**? Percentual? Para todos os pedidos ou só exclusivos/novos clientes?
+19. ✅ **E1** — Exigem **sinal/adiantamento**? Percentual? Para todos os pedidos ou só exclusivos/novos clientes?
 20. 🟡 O que o cliente pode alterar depois de aprovar? Aditivos?
 21. 🟡 Quem, no cliente, aprova (contato específico)? Aceite eletrônico simples basta, ou é preciso assinatura formal?
 22. 🟡 Numeração desejada de orçamento e pedido (ex.: `ORC-2026-0001`)?
@@ -66,12 +68,12 @@ Nenhuma resposta abaixo foi presumida no projeto. 🔴 = bloqueia o início da e
 
 ## Loja / e-commerce (L)
 
-39. 🔴 **L** — Loja é **B2B (CNPJ)**, **B2C (consumidor)** ou ambos? Há pedido mínimo e múltiplos de venda?
-40. 🔴 **L** — Preço de loja: tabela única, por faixa, por perfil de cliente?
-41. 🔴 **L** — Disponibilidade: só vende o que há em estoque, ou aceita **sob encomenda** com prazo?
-42. 🔴 **L** — Formas de pagamento: Pix, cartão, boleto? Já têm conta em algum gateway (Mercado Pago, Asaas, Pagar.me, Stripe)?
-43. 🔴 **L** — Entrega: frete por tabela, transportadora própria, só retirada na fábrica?
-44. 🟡 **L** — Emitem **nota fiscal** por pedido? Qual software/contador emite hoje?
+39. ✅ **L** — Loja é **B2B (CNPJ)**, **B2C (consumidor)** ou ambos? Há pedido mínimo e múltiplos de venda?
+40. ✅ (parcial) **L** — Preço de loja: tabela única, por faixa, por perfil de cliente?
+41. ✅ (parcial) **L** — Disponibilidade: só vende o que há em estoque, ou aceita **sob encomenda** com prazo?
+42. ✅ **L** — Formas de pagamento: Pix, cartão, boleto? Já têm conta em algum gateway (Mercado Pago, Asaas, Pagar.me, Stripe)?
+43. ✅ **L** — Entrega: frete por tabela, transportadora própria, só retirada na fábrica?
+44. ✅ **L** — Emitem **nota fiscal** por pedido? Qual software/contador emite hoje?
 45. 🟡 **L** — Políticas de troca, devolução e arrependimento (CDC se houver consumidor final).
 46. 🟡 **L** — Quais produtos de linha entram primeiro (SKU, fotos, medidas, preços)?
 
