@@ -195,8 +195,8 @@ details{padding:18px 4px}
           <select name="vol"><option value="">Selecione…</option><option>Até 5 mil un.</option><option>5 a 20 mil un.</option><option>20 a 100 mil un.</option><option>Acima de 100 mil un.</option><option>Ainda não sei</option></select></label>
       </div>
       <label>Detalhes (medidas, material, cor, aplicação)<textarea name="msg" placeholder="Conte rapidamente o que precisa. Pode enviar fotos depois, pelo WhatsApp."></textarea></label>
-      <button class="btn full" type="submit">Enviar pedido de orçamento</button>
-      <div class="note">Seus dados são usados apenas para retorno comercial.</div>
+      <button class="btn full" type="submit" id="send">Enviar pedido de orçamento</button>
+      <div class="note" id="note">Seus dados são usados apenas para retorno comercial.</div>
     </div>
   </form>
 </div></header>
@@ -313,14 +313,38 @@ const wa=(t)=>`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`;
 document.querySelectorAll('[data-wa]').forEach(a=>{a.href=wa(a.dataset.wa);a.target='_blank';a.rel='noopener'});
 document.getElementById('yr').textContent=new Date().getFullYear();
 
+/* Opcional: URL do Google Apps Script que grava os pedidos numa planilha (veja leads-google-sheets.gs) */
+const LEADS_ENDPOINT = "";
+
+async function saveLead(d){
+  const lead={...d,pagina:location.href,data:new Date().toISOString()};
+  const jobs=[];
+  if(LEADS_ENDPOINT)jobs.push(fetch(LEADS_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(lead)}));
+  jobs.push((async()=>{const db=await(window.claude&&window.claude.use?window.claude.use('db'):null);if(!db)throw 0;await db.collection('leads').add(lead)})());
+  const r=await Promise.race([Promise.allSettled(jobs),new Promise(x=>setTimeout(()=>x([]),8000))]);
+  return r.some(j=>j.status==='fulfilled');
+}
+
+const tel=document.querySelector('[name=tel]');
+tel.addEventListener('input',e=>{
+  const v=e.target.value.replace(/\D/g,'').slice(0,11);
+  e.target.value=v.length>10?v.replace(/(\d{2})(\d{5})(\d{4})/,'($1) $2-$3'):v.length>6?v.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3'):v.length>2?v.replace(/(\d{2})(\d*)/,'($1) $2'):v;
+});
+
 document.getElementById('form').addEventListener('submit',e=>{
   e.preventDefault();
-  const f=e.target,d=Object.fromEntries(new FormData(f));
+  const f=e.target,d=Object.fromEntries(new FormData(f)),btn=document.getElementById('send'),note=document.getElementById('note');
   const miss=['nome','empresa','tel','tipo'].filter(k=>!String(d[k]||'').trim());
   f.querySelectorAll('input,select').forEach(i=>i.style.borderColor='');
   if(miss.length){miss.forEach(k=>f.elements[k].style.borderColor='#e5484d');f.elements[miss[0]].focus();return}
   const t=`*Pedido de orçamento — Site*\nNome: ${d.nome}\nEmpresa: ${d.empresa}\nWhatsApp: ${d.tel}\nE-mail: ${d.email||'-'}\nPreciso de: ${d.tipo}\nVolume mensal: ${d.vol||'-'}\nDetalhes: ${d.msg||'-'}`;
-  window.open(wa(t),'_blank');
+  window.open(wa(t),'_blank');            // abre o WhatsApp já com o pedido escrito
+  btn.disabled=true;btn.textContent='Enviando…';
+  saveLead(d).catch(()=>false).then(ok=>{
+    btn.disabled=false;btn.textContent='Enviar pedido de orçamento';
+    note.textContent=ok?'✓ Pedido registrado! Continue a conversa no WhatsApp que acabou de abrir.':'Continue a conversa no WhatsApp que acabou de abrir.';
+    note.style.color='var(--ok)';note.style.fontWeight='600';f.reset();
+  });
 });
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
