@@ -88,3 +88,11 @@ mudar a versão revoga a liberação. Custo interno do projeto não aparece ao c
 Banco: 105 testes.
 
 **Ainda não construído:** loja, comissões a pagar, e-mail/WhatsApp automáticos, upload privado de arquivos, parâmetros de custo salvos.
+
+**Também pronto (loja on-line):** catálogo público só com produto publicado, não exclusivo e com preço da faixa 1; carrinho; compra sem login (CPF/CNPJ validado,
+frete FOB ou retirada); preço sempre lido do banco; limite por produto (padrão 300); estoque reservado enquanto o pagamento não chega (físico menos o pendente) e
+liberado na expiração; link de pagamento InfinitePay (confirmação conferida na API antes de baixar o título; **integração ainda não testada com a API real**);
+acompanhamento do pedido por link seguro; devolução (7 dias após o recebimento, nota de devolução obrigatória, reembolso só depois) e tela de configurações.
+Banco: 123 testes. Pendente de decisão da empresa: pedido mínimo da loja, horas de reserva (padrão 24) e conta de recebimento da loja.
+
+**Ainda não construído:** comissões a pagar, e-mail/WhatsApp automáticos, upload privado de arquivos, parâmetros de custo salvos.

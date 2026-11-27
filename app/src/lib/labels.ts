@@ -73,6 +73,14 @@ export const DB_ERRORS: Record<string, string> = {
   project_files_url_check: 'Informe um link que comece com http:// ou https://.', customer_not_found: 'Cliente não encontrado.',
   lead_nome: 'Informe o nome do contato.', lead_contato: 'Informe ao menos o telefone/WhatsApp ou o e-mail.',
   suppliers_tax_id_uk: 'Já existe um fornecedor com este CNPJ/CPF.', suppliers_tax_id_valid: 'CNPJ/CPF inválido.',
+  invalid_tax_id: 'CPF/CNPJ inválido.', contact_required: 'Informe telefone/WhatsApp ou e-mail.',
+  invalid_shipping: 'Escolha o tipo de frete.', item_unavailable: 'Um dos produtos não está mais disponível.',
+  below_minimum: 'Quantidade abaixo do mínimo de um produto.', invalid_multiple: 'A quantidade precisa ser múltipla da embalagem.',
+  above_limit: 'Acima do limite da loja para um produto: fale com um vendedor.',
+  rate_limited: 'Muitos pedidos em pouco tempo. Tente novamente mais tarde.', no_price: 'Produto sem preço cadastrado.',
+  not_received: 'A devolução só é possível depois do recebimento da mercadoria.', return_window_closed: 'O prazo de devolução terminou.',
+  already_requested: 'Já existe uma devolução em andamento para este pedido.',
+  return_not_found: 'Devolução não encontrada.',
 };
 export const dbErrorKey = (m?: string | null) => Object.keys(DB_ERRORS).find((k) => m?.includes(k)) ?? 'falha';
 export const dbErrorText = (k?: string) => (k && DB_ERRORS[k]) || (k ? 'Não foi possível concluir a ação.' : '');

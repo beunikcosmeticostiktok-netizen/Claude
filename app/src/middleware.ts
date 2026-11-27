@@ -1,7 +1,7 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
-const PUBLIC = ['/login', '/setup', '/api/leads', '/configuracao-pendente'];
+const PUBLIC = ['/login', '/setup', '/api/leads', '/api/loja', '/loja', '/configuracao-pendente'];
 const LANDING = ['/', '/landing.html'];   // landing page pública
 
 export async function middleware(request: NextRequest) {

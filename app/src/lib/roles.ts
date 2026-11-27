@@ -21,7 +21,9 @@ export const NAV: NavItem[] = [
   { href: '/compras', label: 'Compras', roles: ['admin', 'gestor', 'compras', 'financeiro'] },
   { href: '/recebimentos', label: 'Recebimentos', roles: ['admin', 'gestor', 'compras', 'estoque'] },
   { href: '/financeiro', label: 'Financeiro', roles: ['admin', 'gestor', 'financeiro'] },
+  { href: '/devolucoes', label: 'Loja: devoluções', roles: ['admin', 'gestor', 'comercial', 'estoque', 'financeiro'] },
   { href: '/custos', label: 'Calculadora de custo', roles: ['admin', 'gestor', 'comercial', 'financeiro'] },
+  { href: '/configuracoes', label: 'Configurações', roles: ['admin'] },
   { href: '/usuarios', label: 'Usuários', roles: ['admin'] },
 ];
 export const canSee = (roles: Role[], allowed: Role[]) => roles.some((r) => allowed.includes(r));

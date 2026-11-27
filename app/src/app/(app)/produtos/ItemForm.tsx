@@ -5,7 +5,7 @@ type Item = {
   id: string; type: string; sku: string; name: string; description: string | null; category: string | null;
   uom: string; weight_g: number | null; capacity_ml: number | null; dimensions: Record<string, number | null> | null;
   material: string | null; finish: string | null; min_qty: number; qty_multiple: number; lead_time_days: number | null;
-  store_published: boolean; active: boolean; internal_notes: string | null;
+  store_published: boolean; image_url?: string | null; active: boolean; internal_notes: string | null;
 };
 
 export function ItemForm({ item, tiers, prices }: { item?: Item; tiers: Tier[]; prices: Record<number, number> }) {
@@ -59,6 +59,7 @@ export function ItemForm({ item, tiers, prices }: { item?: Item; tiers: Tier[]; 
         ))}
       </div>
 
+      <label>Link da foto para a loja (https://…)<input name="image_url" type="url" defaultValue={item?.image_url ?? ''} /></label>
       <label>Observações internas (nunca aparecem para o cliente)<textarea name="internal_notes" rows={2} defaultValue={item?.internal_notes ?? ''} /></label>
       <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
         <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 500 }}>

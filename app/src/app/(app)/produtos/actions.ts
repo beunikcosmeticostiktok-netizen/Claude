@@ -30,7 +30,7 @@ export async function saveItem(fd: FormData) {
     dimensions: { comprimento_mm: n.comprimento_mm, largura_mm: n.largura_mm, altura_mm: n.altura_mm },
     material: text(fd, 'material'), finish: text(fd, 'finish'),
     min_qty: intOr('min_qty', 1) ?? 1, qty_multiple: intOr('qty_multiple', 1) ?? 1,
-    lead_time_days: intOr('lead_time_days', null), store_published: fd.get('store_published') === 'on',
+    lead_time_days: intOr('lead_time_days', null), store_published: fd.get('store_published') === 'on', image_url: text(fd, 'image_url'),
     active: fd.get('active') === 'on', internal_notes: text(fd, 'internal_notes'),
   };
 
