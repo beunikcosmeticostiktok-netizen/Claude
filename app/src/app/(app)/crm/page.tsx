@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { requireRole } from '@/lib/auth';
 import { dataBR } from '@/lib/format';
 import { dbErrorText } from '@/lib/labels';
-import { convertLead, moveOpportunity } from './actions';
+import { convertLead, createLead, moveOpportunity } from './actions';
+import { ImportLeads } from './ImportLeads';
 
 export const dynamic = 'force-dynamic';
 const INTEREST: Record<string, string> = { produto_existente: 'Produto de linha', projeto_exclusivo: 'Projeto exclusivo' };
@@ -26,7 +27,33 @@ export default async function Crm({ searchParams }: { searchParams: Promise<{ er
     <>
       <div className="top"><h1>CRM</h1></div>
       {sp.erro && <div className="alert err">{dbErrorText(sp.erro)}</div>}
-      {sp.ok && <div className="alert ok">{sp.ok === 'convertido' ? 'Lead convertido em oportunidade.' : 'Oportunidade atualizada.'}</div>}
+      {sp.ok && <div className="alert ok">{sp.ok === 'convertido' ? 'Lead convertido em oportunidade.' : sp.ok === 'lead_criado' ? 'Contato registrado e oportunidade criada em “Novo contato”. Se o cliente já existia, ela foi ligada ao cadastro dele.' : 'Oportunidade atualizada.'}</div>}
+
+      {canWrite && (
+        <details className="card" style={{ marginBottom: 16 }} open={!opps?.length && !leads?.length}>
+          <summary className="btn" style={{ listStyle: 'none', display: 'inline-flex' }}>+ Novo contato / lead</summary>
+          <form action={createLead} className="stack" style={{ marginTop: 14 }}>
+            <p className="muted small">Registre quem chamou por WhatsApp, telefone ou indicação. O sistema cria a oportunidade e, se o cliente já existir (mesmo CNPJ, telefone ou e-mail), liga ao cadastro dele sem duplicar.</p>
+            <div className="grid2"><label>Nome do contato<input name="name" required /></label><label>Empresa<input name="company" /></label></div>
+            <div className="grid2"><label>WhatsApp / telefone<input name="phone" inputMode="tel" /></label><label>E-mail<input name="email" type="email" /></label></div>
+            <div className="grid2" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
+              <label>CNPJ (opcional)<input name="tax_id" inputMode="numeric" /></label>
+              <label>Interesse<select name="interest_type"><option value="produto_existente">Produto de linha</option><option value="projeto_exclusivo">Projeto exclusivo</option></select></label>
+              <label>Como chegou<select name="origem"><option>WhatsApp</option><option>Telefone</option><option>Indicação</option><option>Visita</option><option>Instagram</option><option>Outro</option></select></label>
+            </div>
+            <label>Produto de interesse<input name="product_interest" placeholder="ex.: frasco 250 ml, tampa flip" /></label>
+            <label>Observações<textarea name="message" rows={2} /></label>
+            <div><button className="btn" type="submit">Registrar contato</button></div>
+          </form>
+        </details>
+      )}
+
+      {canWrite && (
+        <details className="card" style={{ marginBottom: 16 }}>
+          <summary className="btn line" style={{ listStyle: 'none', display: 'inline-flex' }}>↑ Importar lista (Excel ou CSV)</summary>
+          <div style={{ marginTop: 14 }}><ImportLeads /></div>
+        </details>
+      )}
 
       <div className="card">
         <h2>Leads novos ({leads?.length ?? 0})</h2>

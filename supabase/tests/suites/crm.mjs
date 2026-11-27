@@ -106,4 +106,19 @@ export default async function ({ db, as, createUser, sudo, test, ok, eq, fails }
     await as(db, marcelo, `insert into public.pipeline_stages(name, position, kind) values ('Etapa extra', 99, 'aberta')`);
     await as(db, marcelo, `delete from public.pipeline_stages where position=99`);
   });
+
+  await test('contato registrado à mão pelo comercial vira oportunidade e liga ao cliente existente (sem duplicar)', async () => {
+    const lead = (await as(db, ana, `insert into public.leads(source, interest_type, name, company, phone, message, consent_at)
+      values ('manual','produto_existente','Rita Alves','Cosméticos Alfa Ltda','(14) 98888-7777','[Origem: WhatsApp] quer tampas', now()) returning id`)).rows[0].id;
+    const opp = (await as(db, ana, `select public.process_lead($1) id`, [lead])).rows[0].id;
+    ok(opp);
+    const l = (await sudo(db, `select source, status, customer_id from public.leads where id=$1`, [lead])).rows[0];
+    eq(l.source, 'manual'); ok(['processado','anexado'].includes(l.status));
+    // mesmo telefone de novo → anexa, não cria outro cliente
+    const lead2 = (await as(db, ana, `insert into public.leads(source, interest_type, name, phone, consent_at) values ('manual','produto_existente','Rita','14 98888 7777', now()) returning id`)).rows[0].id;
+    const opp2 = (await as(db, ana, `select public.process_lead($1) id`, [lead2])).rows[0].id;
+    eq(opp2, opp);
+    await fails(as(db, producao, `insert into public.leads(source, interest_type, name, phone) values ('manual','produto_existente','x','1')`), 'row-level security');
+    await fails(as(db, ana, `insert into public.leads(source, interest_type, name, phone) values ('landing','produto_existente','x','1')`), 'row-level security');
+  });
 }

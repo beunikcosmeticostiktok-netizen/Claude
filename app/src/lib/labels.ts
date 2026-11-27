@@ -71,6 +71,7 @@ export const DB_ERRORS: Record<string, string> = {
   project_not_released: 'O projeto exclusivo ainda não está liberado: a produção só começa depois da aprovação técnica e da amostra.',
   project_not_found: 'Projeto não encontrado.', version_not_found: 'Versão não encontrada.',
   project_files_url_check: 'Informe um link que comece com http:// ou https://.', customer_not_found: 'Cliente não encontrado.',
+  lead_nome: 'Informe o nome do contato.', lead_contato: 'Informe ao menos o telefone/WhatsApp ou o e-mail.',
   suppliers_tax_id_uk: 'Já existe um fornecedor com este CNPJ/CPF.', suppliers_tax_id_valid: 'CNPJ/CPF inválido.',
 };
 export const dbErrorKey = (m?: string | null) => Object.keys(DB_ERRORS).find((k) => m?.includes(k)) ?? 'falha';
