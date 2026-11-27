@@ -36,3 +36,14 @@ export async function setCarrier(fd: FormData) {
   revalidatePath(`/portal/pedidos/${o}`);
   redirect(`/portal/pedidos/${o}?ok=transportadora`);
 }
+
+export async function submitProof(fd: FormData) {
+  const { supabase } = await getSession();
+  const o = str(fd, 'order_id');
+  const amount = Number(str(fd, 'amount').replace(/\./g, '').replace(',', '.'));
+  if (!Number.isFinite(amount) || amount <= 0) redirect(`/portal/pedidos/${o}?erro=invalid_amount`);
+  const { error } = await supabase.rpc('portal_submit_proof', { p_title: str(fd, 'title_id'), p_amount: amount, p_paid_on: str(fd, 'paid_on') || null, p_note: str(fd, 'note').trim() || null });
+  if (error) redirect(`/portal/pedidos/${o}?erro=${dbErrorKey(error.message)}`);
+  revalidatePath(`/portal/pedidos/${o}`);
+  redirect(`/portal/pedidos/${o}?ok=comprovante`);
+}

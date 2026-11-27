@@ -56,6 +56,13 @@ export const DB_ERRORS: Record<string, string> = {
   short_note_required: 'A ordem foi produzida a menos do planejado: escreva o motivo para concluir.', invalid_transition: 'Esta mudança de situação não é permitida agora.',
   payment_required: 'Este pedido exige pagamento integral confirmado antes da separação/coleta.', schedule_required: 'Informe a data e hora da coleta.',
   shipment_not_found: 'Separação não encontrada.', item_not_found: 'Item do pedido não encontrado.', invalid_action: 'Ação inválida.',
+  title_closed: 'Este título já está quitado ou cancelado.', exceeds_balance: 'O valor (somado ao desconto) passa do saldo do título.',
+  invalid_amount: 'Valor inválido.', account_not_found: 'Conta não encontrada ou inativa.', payment_not_found: 'Pagamento não encontrado.',
+  due_required: 'Informe o vencimento do saldo.', nothing_to_charge: 'Não há valor a cobrar.', has_payments: 'O título tem pagamentos: estorne antes de cancelar.',
+  mismatch: 'O valor ou a conta do extrato não confere com o lançamento.', already_matched: 'Esta linha do extrato já foi conciliada.',
+  movement_already_matched: 'Este lançamento já foi conciliado com outra linha.', proof_closed: 'Este comprovante já foi analisado.',
+  receipt_not_found: 'Recebimento não encontrado.', invalid_regime: 'Escolha caixa ou competência.', title_not_found: 'Título não encontrado.',
+  order_not_found: 'Pedido não encontrado.', proof_not_found: 'Comprovante não encontrado.',
   suppliers_tax_id_uk: 'Já existe um fornecedor com este CNPJ/CPF.', suppliers_tax_id_valid: 'CNPJ/CPF inválido.',
 };
 export const dbErrorKey = (m?: string | null) => Object.keys(DB_ERRORS).find((k) => m?.includes(k)) ?? 'falha';

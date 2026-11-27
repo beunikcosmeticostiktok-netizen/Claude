@@ -4,7 +4,7 @@ import { getSession } from '@/lib/auth';
 import { brl, dataBR } from '@/lib/format';
 import { axisValue, dbErrorText } from '@/lib/labels';
 import { buildTimeline } from '@/lib/timeline';
-import { setCarrier } from '../../actions';
+import { setCarrier, submitProof } from '../../actions';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,6 +17,7 @@ export default async function PortalPedido({ params, searchParams }: { params: P
   const { data: items } = await supabase.from('portal_order_items').select('*').eq('order_id', id).order('position');
   const { data: ships } = await supabase.from('portal_shipments').select('id, number, status, scheduled_at, collected_at, volumes, tracking').eq('order_id', id).order('collected_at', { ascending: false, nullsFirst: true });
   const { data: shipItems } = (ships ?? []).length ? await supabase.from('portal_shipment_items').select('shipment_id, description, qty').in('shipment_id', (ships ?? []).map((x) => x.id)) : { data: [] };
+  const { data: titles } = await supabase.from('portal_titles').select('*').eq('order_id', id).order('due_date');
   const SHL: Record<string, string> = { separado: 'Separado', pronto_coleta: 'Pronto para coleta', coleta_agendada: 'Coleta agendada', coletado: 'Coletado' };
   const access = portal.find((p) => p.customer_id === o.customer_id)?.access;
   const steps = buildTimeline(o);
@@ -29,6 +30,7 @@ export default async function PortalPedido({ params, searchParams }: { params: P
       <div className="top"><h1>{o.number} {cancelled && <span className="badge off">Cancelado</span>}</h1><Link className="btn line" href="/portal/pedidos">Voltar</Link></div>
       {sp.erro && <div className="alert err">{dbErrorText(sp.erro)}</div>}
       {sp.ok === 'aprovado' && <div className="alert ok">Orçamento aprovado e pedido gerado. Obrigado!</div>}
+      {sp.ok === 'comprovante' && <div className="alert ok">Comprovante enviado. Nossa equipe financeira vai conferir e confirmar o pagamento.</div>}
       {sp.ok === 'transportadora' && <div className="alert ok">Transportadora registrada.</div>}
       {waitingDeposit && !cancelled && (
         <div className="alert warn"><b>Sinal pendente:</b> {brl(o.deposit_amount)} ({o.deposit_pct}% do pedido). A produção é liberada após a confirmação do pagamento pela nossa equipe financeira. Se ainda não recebeu os dados de pagamento, fale com seu vendedor.</div>
@@ -59,6 +61,26 @@ export default async function PortalPedido({ params, searchParams }: { params: P
           )}
         </div>
       </div>
+
+      {(titles ?? []).length > 0 && (
+        <div className="card scroll" style={{ marginTop: 16 }}>
+          <h2>Cobranças</h2>
+          <table className="table"><thead><tr><th>Descrição</th><th>Vencimento</th><th>Situação</th><th className="right">Valor</th><th className="right">Saldo</th></tr></thead><tbody>
+            {(titles ?? []).map((t) => (
+              <tr key={t.id}><td>{t.description}</td><td>{dataBR(t.due_date + 'T12:00:00')} {t.overdue && <span className="badge off">vencido</span>}</td>
+                <td><span className={`badge ${t.status === 'pago' ? 'on' : ''}`}>{t.status === 'pago' ? 'Pago' : t.status === 'parcial' ? 'Parcial' : 'Em aberto'}</span></td>
+                <td className="right">{brl(t.amount)}</td><td className="right">{brl(t.balance)}</td></tr>))}
+          </tbody></table>
+          {(titles ?? []).filter((t) => t.balance > 0 && t.status !== 'pago').map((t) => (
+            <form key={t.id} action={submitProof} className="inline" style={{ marginTop: 12 }}>
+              <input type="hidden" name="order_id" value={o.id} /><input type="hidden" name="title_id" value={t.id} />
+              <span className="small" style={{ minWidth: 180 }}>Informar pagamento de “{t.description}”</span>
+              <input name="amount" inputMode="decimal" placeholder="Valor pago" required style={{ width: 110 }} /><input name="paid_on" type="date" />
+              <input name="note" placeholder="Observação (opcional)" /><button className="btn line sm" type="submit">Enviar comprovante</button>
+            </form>))}
+          <p className="muted small" style={{ marginTop: 8 }}>O pagamento só é considerado confirmado depois que o financeiro confere o recebimento.</p>
+        </div>
+      )}
 
       {(ships ?? []).length > 0 && (
         <div className="card" style={{ marginTop: 16 }}>

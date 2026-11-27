@@ -19,6 +19,7 @@ export const NAV: NavItem[] = [
   { href: '/expedicao', label: 'Expedição', roles: ['admin', 'gestor', 'comercial', 'producao', 'estoque', 'financeiro'] },
   { href: '/compras', label: 'Compras', roles: ['admin', 'gestor', 'compras', 'financeiro'] },
   { href: '/recebimentos', label: 'Recebimentos', roles: ['admin', 'gestor', 'compras', 'estoque'] },
+  { href: '/financeiro', label: 'Financeiro', roles: ['admin', 'gestor', 'financeiro'] },
   { href: '/custos', label: 'Calculadora de custo', roles: ['admin', 'gestor', 'comercial', 'financeiro'] },
   { href: '/usuarios', label: 'Usuários', roles: ['admin'] },
 ];

@@ -73,3 +73,10 @@ apontamento com consumo de matéria-prima, liberação de qualidade (acabado só
 
 **Ainda não construído:** projetos exclusivos (aprovação técnica/amostra), financeiro (títulos, caixa, comissões a pagar), loja,
 e-mail/WhatsApp automáticos, parâmetros de custo salvos no sistema.
+
+**Também pronto (Etapa 3 — financeiro):** contas bancárias e caixas, títulos a receber/pagar (cobrança do pedido com sinal e saldo, uma vez só;
+conta a pagar por recebimento de compra; parcelamento), pagamentos parciais com juros, multa e desconto, estorno, **caixa imutável**, transferências
+(fora de receita/despesa), comprovantes do cliente que só dão baixa após validação do financeiro, conciliação manual e relatório por caixa e competência.
+Banco: 93 testes.
+
+**Ainda não construído:** projetos exclusivos, loja, comissões a pagar, e-mail/WhatsApp automáticos, parâmetros de custo salvos.
