@@ -96,3 +96,7 @@ acompanhamento do pedido por link seguro; devolução (7 dias após o recebiment
 Banco: 123 testes. Pendente de decisão da empresa: pedido mínimo da loja, horas de reserva (padrão 24) e conta de recebimento da loja.
 
 **Ainda não construído:** comissões a pagar, e-mail/WhatsApp automáticos, upload privado de arquivos, parâmetros de custo salvos.
+
+**Também pronto (comissões a pagar):** plano com 4 faixas progressivas, meta mensal por vendedor, apuração do mês (só pedidos faturados e não cancelados), fechamento que grava
+um retrato imutável, aprovação que lança a conta a pagar no Financeiro (uma vez só) e cancelamento com motivo; o vendedor vê só a própria apuração. Banco: 131 testes.
+**Decisão pendente:** a base é o valor faturado; se a empresa quiser sobre o valor recebido, muda numa nova migração. Os percentuais das faixas são cadastrados pelo administrador.
