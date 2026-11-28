@@ -93,3 +93,19 @@ export async function saveCadastro(fd: FormData) {
     : await supabase.from('cost_centers').insert({ name });
   done('/financeiro/contas', res.error, 'salvo');
 }
+
+export async function payBatch(fd: FormData) {
+  const { supabase } = await requireRole([...ROLES]);
+  const ids = fd.getAll('title').map(String).filter(Boolean);
+  if (!ids.length) redirect('/financeiro/pagamentos?erro=no_items');
+  const { error } = await supabase.rpc('title_pay_batch', {
+    p_titles: ids, p_account: str(fd, 'account_id'), p_paid_on: str(fd, 'paid_on') || new Date().toISOString().slice(0, 10),
+    p_key: str(fd, 'key'), p_proof_url: str(fd, 'proof_url').trim() || null,
+  });
+  done('/financeiro/pagamentos', error, 'lote');
+}
+export async function setProof(fd: FormData) {
+  const { supabase } = await requireRole([...ROLES]);
+  const { error } = await supabase.rpc('payment_set_proof', { p_payment: str(fd, 'payment_id'), p_url: str(fd, 'proof_url') || null });
+  done('/financeiro/pagamentos', error, 'comprovante');
+}

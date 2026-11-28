@@ -82,6 +82,8 @@ export const DB_ERRORS: Record<string, string> = {
   already_requested: 'Já existe uma devolução em andamento para este pedido.',
   target_not_found: 'Este vendedor não tem meta cadastrada nesse mês.', month_not_over: 'Só é possível fechar meses já encerrados.',
   already_closed: 'Este mês já foi fechado para o vendedor. Cancele a apuração para refazer.', nothing_to_pay: 'A comissão é zero: não há o que pagar.',
+  future_date: 'A data do pagamento não pode ser futura.', duplicate_titles: 'Há contas repetidas na seleção.', only_payables: 'Só contas a pagar podem ser pagas aqui.',
+  invalid_url: 'Informe um link que comece com http:// ou https://.', payments_proof_url_check: 'Informe um link que comece com http:// ou https://.',
   return_not_found: 'Devolução não encontrada.',
 };
 export const dbErrorKey = (m?: string | null) => Object.keys(DB_ERRORS).find((k) => m?.includes(k)) ?? 'falha';

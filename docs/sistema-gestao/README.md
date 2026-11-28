@@ -100,3 +100,6 @@ Banco: 123 testes. Pendente de decisão da empresa: pedido mínimo da loja, hora
 **Também pronto (comissões a pagar):** plano com 4 faixas progressivas, meta mensal por vendedor, apuração do mês (só pedidos faturados e não cancelados), fechamento que grava
 um retrato imutável, aprovação que lança a conta a pagar no Financeiro (uma vez só) e cancelamento com motivo; o vendedor vê só a própria apuração. Banco: 131 testes.
 **Decisão pendente:** a base é o valor faturado; se a empresa quiser sobre o valor recebido, muda numa nova migração. Os percentuais das faixas são cadastrados pelo administrador.
+
+**Também pronto (pagamentos):** agenda de contas a pagar (vencidas, hoje, 7 e 30 dias) de todas as origens (fornecedores, comissões, reembolsos, despesas), pagamento em lote
+(tudo ou nada, mesma conta e data, sem duplicar em duplo clique) e link do comprovante em cada pagamento. O sistema só registra: não há integração bancária. Banco: 137 testes.
